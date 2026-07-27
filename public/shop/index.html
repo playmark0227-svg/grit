@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHOP | GRIT</title>
+  <meta name="description" content="GRITのオンラインショップ。ヴィンテージ・古着は全て一点物、出会いは一度きり。デニム・アウター・トップスなど、一期一会の一着を。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/shop.css">
+</head>
+<body data-page="shop" class="theme-denim">
+  <div id="site-header"></div>
+
+  <main>
+
+    <!-- ヒーロー(コンパクト・全面デニムの上) -->
+    <section class="shop-hero">
+      <svg class="shop-hero__arc" viewBox="0 0 220 80" aria-hidden="true" focusable="false">
+        <path d="M4 16 C 58 66, 104 64, 110 32 C 116 64, 162 66, 216 16"
+              fill="none" stroke="currentColor" stroke-width="3"
+              stroke-dasharray="7 6" stroke-linecap="round"/>
+      </svg>
+      <div class="container shop-hero__inner">
+        <p class="shop-hero__eyebrow">Grit Online Store</p>
+        <h1 class="shop-hero__title">
+          <span class="shop-hero__word">SHOP<span class="red-tab shop-hero__tab">GRIT</span></span>
+        </h1>
+        <p class="shop-hero__catch">全て一点物。出会いは一度きり。</p>
+        <p class="shop-hero__sub">迷っているあいだに、その一着は誰かの元へ。<br class="sp-only">気になったときが、買いどきです。</p>
+        <div class="shop-hero__seam" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- カテゴリフィルタ(横スクロールチップ・スクロール追従) -->
+    <section class="shop-filter" aria-label="カテゴリで絞り込む">
+      <div class="selvedge-strip" aria-hidden="true"></div>
+      <div class="container">
+        <div class="shop-filter__scroll" id="category-filter"></div>
+      </div>
+    </section>
+
+    <!-- 商品グリッド -->
+    <section class="shop-products" aria-label="商品一覧">
+      <div class="container">
+        <p class="shop-products__count"><span id="item-count" aria-live="polite">Loading</span></p>
+        <div class="grid-products" id="product-grid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="site-footer"></div>
+  <script src="../js/firebase-config.js"></script>
+  <script type="module" src="../js/common.js"></script>
+  <script type="module" src="../js/shop.js"></script>
+</body>
+</html>

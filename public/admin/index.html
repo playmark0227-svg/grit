@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理ページ | GRIT</title>
+  <meta name="description" content="GRIT 管理ページ。商品とブログ記事の登録・編集を行う店舗スタッフ専用画面です。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/admin.css">
+  <meta name="robots" content="noindex">
+</head>
+<body data-page="admin">
+
+  <div class="demo-banner" id="demo-banner" role="status" hidden>デモモード: 保存はこの画面内だけの仮保存です</div>
+
+  <header class="admin-header">
+    <div class="selvedge-strip" aria-hidden="true"></div>
+    <div class="admin-header__bar container">
+      <a class="admin-logo" href="./" aria-label="GRIT 管理ページ">
+        <span class="admin-logo__text">GRIT</span>
+        <span class="red-tab">Admin</span>
+      </a>
+      <div class="admin-header__user" id="admin-user" hidden>
+        <span class="admin-header__email" id="admin-user-email"></span>
+        <button type="button" class="admin-signout" id="btn-signout">ログアウト</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main container">
+
+    <!-- 認証確認中 -->
+    <section class="auth-view" id="view-loading" aria-label="読み込み中">
+      <p class="auth-loading"><span class="stitch-spinner" aria-hidden="true"></span>認証状態を確認しています…</p>
+    </section>
+
+    <!-- 未ログイン -->
+    <section class="auth-view" id="view-login" aria-label="ログイン" hidden>
+      <div class="stitch-box auth-card">
+        <p class="auth-card__logo">GRIT <span class="red-tab">Admin</span></p>
+        <p class="auth-card__ja">管理ページ — スタッフ専用</p>
+        <button type="button" class="btn btn--red btn--lg btn--block" id="btn-login">Googleでログイン</button>
+        <p class="form-error" id="login-error" hidden></p>
+        <a class="auth-card__back" href="../">← サイトトップへ戻る</a>
+      </div>
+    </section>
+
+    <!-- ログイン済み・権限なし -->
+    <section class="auth-view" id="view-denied" aria-label="権限がありません" hidden>
+      <div class="stitch-box auth-card">
+        <p class="auth-card__logo">GRIT <span class="red-tab">Admin</span></p>
+        <h1 class="auth-card__title">権限がありません</h1>
+        <p class="auth-card__note">このアカウント(<span id="denied-email"></span>)には管理ページへのアクセス権限がありません。許可されたGoogleアカウントでログインし直してください。</p>
+        <button type="button" class="btn btn--ghost btn--block" id="btn-denied-signout">サインアウト</button>
+        <a class="auth-card__back" href="../">← サイトトップへ戻る</a>
+      </div>
+    </section>
+
+    <!-- 管理UI -->
+    <section id="view-admin" hidden>
+
+      <div class="admin-tabs" role="tablist" aria-label="管理メニュー">
+        <button type="button" class="admin-tab is-active" id="tab-products" role="tab" aria-selected="true" aria-controls="panel-products">商品</button>
+        <button type="button" class="admin-tab" id="tab-posts" role="tab" aria-selected="false" aria-controls="panel-posts">ブログ</button>
+        <button type="button" class="admin-tab" id="tab-orders" role="tab" aria-selected="false" aria-controls="panel-orders">注文</button>
+      </div>
+
+      <!-- ========== 商品タブ ========== -->
+      <div class="admin-panel" id="panel-products" role="tabpanel" aria-labelledby="tab-products">
+
+        <div class="panel-head">
+          <p class="panel-count" id="product-count"></p>
+          <button type="button" class="btn btn--red" id="btn-new-product">+ 新規商品</button>
+        </div>
+
+        <form class="admin-form stitch-box" id="product-form" novalidate hidden>
+          <p class="admin-form__title" id="product-form-title">新規商品</p>
+
+          <div class="form-field">
+            <span class="form-field__label">写真(1枚目がカバーになります)</span>
+            <label class="photo-add">
+              <input type="file" id="p-images" accept="image/*" multiple class="visually-hidden">
+              + 写真を追加(複数選択可)
+            </label>
+            <div class="photo-grid" id="p-previews"></div>
+          </div>
+
+          <div class="upload-progress" id="p-progress" hidden>
+            <p class="upload-progress__text" id="p-progress-text">アップロード中 0/0</p>
+            <div class="upload-progress__track"><span class="upload-progress__bar" id="p-progress-bar"></span></div>
+          </div>
+
+          <label class="form-field">
+            <span class="form-field__label">商品名<span class="req">*</span></span>
+            <input type="text" id="p-name" required placeholder="例: 60s デニムジャケット 3rd">
+          </label>
+
+          <div class="form-cols">
+            <label class="form-field">
+              <span class="form-field__label">ブランド</span>
+              <input type="text" id="p-brand" placeholder="無ければ空欄(no brand)">
+            </label>
+            <label class="form-field">
+              <span class="form-field__label">価格(税込・円)<span class="req">*</span></span>
+              <input type="number" id="p-price" required min="0" step="1" inputmode="numeric" placeholder="12800">
+            </label>
+          </div>
+
+          <div class="form-cols">
+            <label class="form-field">
+              <span class="form-field__label">サイズ</span>
+              <input type="text" id="p-size" placeholder="例: M / W32 L30">
+            </label>
+            <label class="form-field">
+              <span class="form-field__label">カテゴリ</span>
+              <select id="p-category"></select>
+            </label>
+          </div>
+
+          <label class="form-field">
+            <span class="form-field__label">状態</span>
+            <input type="text" id="p-condition" placeholder="例: A(美品)">
+          </label>
+
+          <label class="form-field">
+            <span class="form-field__label">説明</span>
+            <textarea id="p-desc" placeholder="年代・サイズ感・状態の詳細など(改行できます)"></textarea>
+          </label>
+
+          <p class="form-error" id="p-error" hidden></p>
+
+          <div class="admin-form__actions">
+            <button type="button" class="btn btn--ghost" id="p-cancel">キャンセル</button>
+            <button type="submit" class="btn btn--red" id="p-submit">保存する</button>
+          </div>
+        </form>
+
+        <p class="form-error" id="product-list-error" hidden></p>
+        <div class="admin-list" id="product-list" aria-live="polite"></div>
+      </div>
+
+      <!-- ========== ブログタブ ========== -->
+      <div class="admin-panel" id="panel-posts" role="tabpanel" aria-labelledby="tab-posts" hidden>
+
+        <div class="panel-head">
+          <p class="panel-count" id="post-count"></p>
+          <button type="button" class="btn btn--red" id="btn-new-post">+ 新規記事</button>
+        </div>
+
+        <form class="admin-form stitch-box" id="post-form" novalidate hidden>
+          <p class="admin-form__title" id="post-form-title">新規記事</p>
+
+          <label class="form-field">
+            <span class="form-field__label">タイトル<span class="req">*</span></span>
+            <input type="text" id="b-title" required placeholder="例: 冬物アウター入荷しました">
+          </label>
+
+          <div class="form-field">
+            <span class="form-field__label">カバー画像(任意・1枚)</span>
+            <label class="photo-add">
+              <input type="file" id="b-cover" accept="image/*" class="visually-hidden">
+              + カバー画像を選択
+            </label>
+            <div class="photo-grid" id="b-cover-preview"></div>
+          </div>
+
+          <div class="upload-progress" id="b-progress" hidden>
+            <p class="upload-progress__text" id="b-progress-text">アップロード中 0/0</p>
+            <div class="upload-progress__track"><span class="upload-progress__bar" id="b-progress-bar"></span></div>
+          </div>
+
+          <label class="form-field">
+            <span class="form-field__label">本文<span class="req">*</span></span>
+            <textarea id="b-body" class="textarea--tall" required placeholder="本文を入力(改行で段落になります)"></textarea>
+          </label>
+
+          <label class="check-field">
+            <input type="checkbox" id="b-published" checked>
+            <span>公開する</span>
+          </label>
+
+          <p class="form-error" id="b-error" hidden></p>
+
+          <div class="admin-form__actions">
+            <button type="button" class="btn btn--ghost" id="b-cancel">キャンセル</button>
+            <button type="submit" class="btn btn--red" id="b-submit">保存する</button>
+          </div>
+        </form>
+
+        <p class="form-error" id="post-list-error" hidden></p>
+        <div class="admin-list" id="post-list" aria-live="polite"></div>
+      </div>
+
+      <!-- ========== 注文タブ(閲覧と発送チェックのみ) ========== -->
+      <div class="admin-panel" id="panel-orders" role="tabpanel" aria-labelledby="tab-orders" hidden>
+
+        <div class="panel-head">
+          <p class="panel-count" id="order-count"></p>
+          <button type="button" class="btn btn--ghost" id="btn-reload-orders">再読み込み</button>
+        </div>
+
+        <p class="orders-note">お支払いが完了した注文が自動で並びます。発送したら「発送済みにする」を押してください。返金・キャンセルはStripeの管理画面から行います。</p>
+
+        <p class="form-error" id="order-list-error" hidden></p>
+        <div class="admin-list" id="order-list" aria-live="polite"></div>
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="admin-footer">
+    <div class="container">
+      <p>GRIT ADMIN — <a href="../">サイトを見る</a></p>
+    </div>
+  </footer>
+
+  <script src="../js/firebase-config.js"></script>
+  <script type="module" src="../js/common.js"></script>
+  <script type="module" src="../js/admin.js"></script>
+</body>
+</html>

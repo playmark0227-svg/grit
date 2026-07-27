@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブログ | GRIT</title>
+  <meta name="description" content="ヴィンテージ&古着 GRIT のブログ。入荷情報や古着との付き合い方、スタイリングのヒントを店主が綴ります。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/blog.css">
+</head>
+<body data-page="blog">
+  <div id="site-header"></div>
+
+  <main>
+    <section class="blog-page">
+      <div class="container">
+        <div class="section-head">
+          <h1 class="section-head__en">Blog <span class="red-tab">Journal</span></h1>
+          <p class="section-head__ja">読みもの</p>
+        </div>
+
+        <p class="blog-lead">入荷のお知らせ、古着との付き合い方、スタイリングのヒント。<br>一点物にまつわるあれこれを、店主が綴ります。</p>
+
+        <div id="blog-grid" class="blog-grid" aria-busy="true">
+          <div class="b-skel" aria-hidden="true">
+            <div class="b-skel__img"><div class="skeleton skel-fill"></div></div>
+            <div class="b-skel__body">
+              <div class="b-skel__line b-skel__line--sm"></div>
+              <div class="b-skel__line"></div>
+              <div class="b-skel__line b-skel__line--w60"></div>
+            </div>
+          </div>
+          <div class="b-skel" aria-hidden="true">
+            <div class="b-skel__img"><div class="skeleton skel-fill"></div></div>
+            <div class="b-skel__body">
+              <div class="b-skel__line b-skel__line--sm"></div>
+              <div class="b-skel__line"></div>
+              <div class="b-skel__line b-skel__line--w60"></div>
+            </div>
+          </div>
+          <div class="b-skel" aria-hidden="true">
+            <div class="b-skel__img"><div class="skeleton skel-fill"></div></div>
+            <div class="b-skel__body">
+              <div class="b-skel__line b-skel__line--sm"></div>
+              <div class="b-skel__line"></div>
+              <div class="b-skel__line b-skel__line--w60"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/firebase-config.js"></script>
+  <script type="module" src="js/common.js"></script>
+  <script type="module" src="js/blog.js"></script>
+</body>
+</html>

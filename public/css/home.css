@@ -1,0 +1,566 @@
+/* ============================================================
+   GRIT — HPトップ (home.css)
+   base.css のトークン/コンポーネントを前提に、トップ固有の装飾のみ
+   ============================================================ */
+
+/* ---------------- HERO ---------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(52px, 11vw, 108px) clamp(44px, 9vw, 92px);
+}
+/* 生成り地に薄いデニムの影を落とす */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 90% at 50% -10%, rgb(10 13 18 / .10), transparent 70%);
+  pointer-events: none;
+}
+.hero__inner { position: relative; }
+
+/* PCではテキストとビジュアルの2カラム(モバイルはテキストのみ) */
+.hero__visual { display: none; }
+@media (min-width: 1040px) {
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+    align-items: center;
+    gap: clamp(30px, 5vw, 70px);
+  }
+  .hero__visual {
+    display: block;
+    position: relative;
+    height: 400px;
+  }
+}
+
+/* デニム生地のスウォッチ(実物のジーンズ写真・縫い目入り) */
+.hero__swatch {
+  position: absolute;
+  right: 34px;
+  top: 8px;
+  width: 248px;
+  height: 316px;
+  background-color: #4a5670;
+  background-image: linear-gradient(rgb(42 48 60 / .55), rgb(42 48 60 / .55)), url("../assets/denim-seam.jpg");
+  background-image: linear-gradient(rgb(42 48 60 / .55), rgb(42 48 60 / .55)),
+                    image-set(url("../assets/denim-seam.webp") type("image/webp"),
+                              url("../assets/denim-seam.jpg") type("image/jpeg"));
+  background-size: auto, cover;
+  background-position: center, 62% 40%;
+  background-repeat: no-repeat, no-repeat;
+  background-blend-mode: normal, multiply;
+  transform: rotate(-1.5deg);
+  box-shadow: 0 18px 38px rgb(15 24 38 / .34);
+}
+.hero__swatch::before {
+  content: "";
+  position: absolute;
+  inset: 11px;
+  border: 1px solid rgb(176 138 82 / .55);
+}
+/* 左端のセルビッジ(赤耳) */
+.hero__swatch-selvedge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 13px;
+  background: linear-gradient(90deg, #f9f4e9, #e5dcc3);
+}
+.hero__swatch-selvedge::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--redtab);
+}
+.hero__swatch-label {
+  position: absolute;
+  /* 下げ札(左下)と重ならないよう右上に置く */
+  right: 26px;
+  top: 34px;
+  text-align: right;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: .78rem;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  line-height: 1.9;
+  color: rgb(242 236 221 / .9);
+}
+.hero__swatch-tab {
+  position: absolute;
+  top: -9px;
+  right: 26px;
+}
+
+/* 下げ札(ハングタグ) */
+.hero__hangtag {
+  position: absolute;
+  left: 6px;
+  bottom: 16px;
+  width: 152px;
+  padding: 26px 16px 18px;
+  background: var(--paper);
+  border: 1px solid var(--kinari-dark);
+  transform: rotate(1.5deg);
+  box-shadow: 0 12px 26px rgb(15 24 38 / .22);
+  text-align: center;
+}
+.hero__hangtag::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--leather);
+  opacity: .5;
+}
+.hero__hangtag-hole {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--kinari);
+  box-shadow: inset 0 0 0 2px var(--leather);
+}
+.hero__hangtag-en,
+.hero__hangtag-ja,
+.hero__hangtag-note { position: relative; display: block; }
+.hero__hangtag-en {
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.16rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--indigo-950);
+}
+.hero__hangtag-ja {
+  font-family: var(--font-serif-jp);
+  font-size: .84rem;
+  letter-spacing: .2em;
+  color: var(--leather);
+  margin-top: 2px;
+}
+.hero__hangtag-note {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--kinari-dark);
+  font-family: var(--font-display);
+  font-size: .68rem;
+  letter-spacing: .18em;
+  color: var(--muted);
+}
+
+.hero__eyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(.66rem, 2.4vw, .76rem);
+  font-weight: 500;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: var(--leather);
+  display: flex;
+  align-items: center;
+  gap: .9em;
+  margin-bottom: clamp(14px, 3vw, 22px);
+}
+.hero__eyebrow::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  max-width: 190px;
+  background: currentColor; opacity: .45;
+}
+
+.hero__title { margin: 0; line-height: .95; }
+.hero__grit {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-display-big);
+  font-weight: 400; /* Caslon Displayの正字。古い商標の看板文字らしく */
+  font-size: clamp(4rem, 19vw, 9.5rem);
+  letter-spacing: .01em;
+  color: var(--indigo-950);
+  padding-right: clamp(28px, 7vw, 62px);
+}
+.hero__tab {
+  position: absolute;
+  top: clamp(8px, 2.4vw, 22px);
+  right: 0;
+  transform: none;
+  font-size: clamp(.56rem, 1.7vw, .72rem);
+}
+
+.hero__catch {
+  font-family: var(--font-serif-jp);
+  font-weight: 600;
+  font-size: clamp(1.32rem, 5.4vw, 2.3rem);
+  letter-spacing: .1em;
+  color: var(--indigo-900);
+  margin-top: clamp(20px, 4.4vw, 34px);
+  padding-left: .1em;
+  border-left: none;
+}
+.hero__catch::before {
+  content: "";
+  display: block;
+  width: 54px;
+  height: 2px;
+  background: var(--redtab);
+  margin-bottom: clamp(14px, 3vw, 22px);
+}
+
+.hero__lead {
+  margin-top: clamp(16px, 3.4vw, 26px);
+  font-size: clamp(.88rem, 3.3vw, 1rem);
+  line-height: 2.15;
+  color: rgb(33 36 42 / .8);
+  max-width: 34em;
+}
+
+.hero__cta {
+  margin-top: clamp(28px, 5.5vw, 46px);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hero__cta .btn { flex: 1 1 220px; }
+
+/* 縦組みの英字(PCのみ) */
+.hero__side,
+.hero__scroll { display: none; }
+
+@media (min-width: 960px) {
+  .hero__cta .btn { flex: 0 0 auto; }
+}
+/* 縦組み英字はビジュアルと干渉しない広い画面だけに出す */
+@media (min-width: 1280px) {
+  .hero__side {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: clamp(14px, 2.4vw, 30px);
+    transform: translateY(-50%) rotate(180deg);
+    writing-mode: vertical-rl;
+    font-family: var(--font-display);
+    font-size: .7rem;
+    font-weight: 500;
+    letter-spacing: .36em;
+    text-transform: uppercase;
+    color: var(--indigo-500);
+    opacity: .75;
+    pointer-events: none;
+  }
+}
+@media (min-width: 960px) {
+  .hero__scroll {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    left: max(clamp(16px, 4vw, 32px), calc(50% - 580px + clamp(16px, 4vw, 32px)));
+    bottom: 18px;
+    font-family: var(--font-display);
+    font-size: .66rem;
+    font-weight: 500;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .hero__scroll::after {
+    content: "";
+    width: 64px;
+    height: 1px;
+    background: var(--muted); opacity: .5;
+    animation: hero-scroll 2.2s ease-in-out infinite;
+  }
+}
+@keyframes hero-scroll {
+  0%, 100% { transform: translateX(0); opacity: .55; }
+  50% { transform: translateX(9px); opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll::after { animation: none; }
+}
+
+.br-pc { display: none; }
+@media (min-width: 780px) { .br-pc { display: inline; } }
+
+/* ---------------- セクション共通 ---------------- */
+.home-sec { padding-block: clamp(48px, 9vw, 96px); }
+.home-arrivals { padding-top: clamp(38px, 7vw, 78px); }
+.home-blog { padding-top: 0; }
+
+/* 明→暗→明のリズムを作る。ABOUTは墨の面にして、
+   生成りのカードだけが布に縫い付けたラベルのように浮く */
+.home-about {
+  background: var(--indigo-950);
+  color: var(--kinari);
+}
+.home-about .section-head__en { color: var(--kinari); }
+.home-about .section-head__ja { color: var(--indigo-300); }
+.home-about__body { color: rgb(189 181 164 / .88); }
+.home-about__text { color: inherit; }
+
+.home-more { margin-top: clamp(26px, 5vw, 40px); text-align: right; }
+.home-more__link {
+  display: inline-flex;
+  align-items: center;
+  gap: .7em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: .86rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--indigo-900);
+  padding: 10px 2px;
+  border-bottom: 1px solid var(--thread);
+}
+.home-more__arrow { transition: transform .25s ease; }
+.home-more__link:hover { color: var(--redtab); }
+.home-more__link:hover .home-more__arrow { transform: translateX(6px); }
+
+/* ---------------- ABOUT ---------------- */
+.home-about__body {
+  max-width: 40em;
+  font-size: clamp(.9rem, 3.2vw, .98rem);
+  line-height: 2.2;
+}
+.home-about__body p + p { margin-top: 1.5em; }
+
+.home-about__grid {
+  margin-top: clamp(32px, 6vw, 56px);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) { .home-about__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
+
+.about-card { display: flex; flex-direction: column; }
+.about-card__num {
+  display: flex;
+  align-items: baseline;
+  gap: .8em;
+  font-family: var(--font-display);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--leather);
+}
+.about-card__num span:first-child {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--indigo-500);
+  line-height: 1;
+}
+.about-card__title {
+  font-family: var(--font-serif-jp);
+  font-weight: 600;
+  font-size: 1.12rem;
+  letter-spacing: .05em;
+  color: var(--indigo-950);
+  margin: .8em 0 .55em;
+}
+.about-card__text { font-size: .87rem; line-height: 2; color: rgb(33 36 42 / .78); }
+
+/* ---------------- NEW ARRIVALS / スケルトン ---------------- */
+.home-skel {
+  aspect-ratio: 4 / 6;
+  background: var(--kinari-dark);
+  position: relative;
+  overflow: hidden;
+}
+.home-skel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, rgb(255 255 255 / 0) 40%, rgb(255 255 255 / .55) 50%, rgb(255 255 255 / 0) 60%);
+  background-size: 200% 100%;
+  animation: sk-move 1.5s linear infinite;
+}
+.home-skel--post { aspect-ratio: auto; height: 132px; }
+@media (prefers-reduced-motion: reduce) { .home-skel::after { animation: none; } }
+
+/* 空/エラー表示をグリッド全幅に */
+.span-all { grid-column: 1 / -1; }
+
+/* ---------------- BLOG ---------------- */
+.home-posts { display: grid; gap: 14px; grid-template-columns: 1fr; }
+@media (min-width: 720px) { .home-posts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
+
+.home-post {
+  display: flex;
+  gap: 14px;
+  background: var(--paper);
+  border: 1px solid var(--kinari-dark);
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: var(--shadow-card);
+  transition: transform .25s ease, box-shadow .25s ease;
+  overflow: hidden;
+}
+.home-post:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+
+.home-post__img {
+  flex: none;
+  width: 116px;
+  align-self: stretch;
+  background-color: #47546e;
+  background-image: linear-gradient(rgb(42 48 60 / .55), rgb(42 48 60 / .55)), url("../assets/denim.jpg");
+  background-image: linear-gradient(rgb(42 48 60 / .55), rgb(42 48 60 / .55)),
+                    image-set(url("../assets/denim.webp") type("image/webp"),
+                              url("../assets/denim.jpg") type("image/jpeg"));
+  background-size: auto, 340px;
+  background-repeat: repeat, repeat;
+  background-blend-mode: normal, multiply;
+  position: relative;
+  overflow: hidden;
+}
+.home-post__img img { width: 100%; height: 100%; object-fit: cover; }
+.home-post__ph {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: .92rem;
+  letter-spacing: .22em;
+  color: var(--kinari);
+}
+.home-post__ph small {
+  font-size: .52rem;
+  font-weight: 400;
+  letter-spacing: .26em;
+  color: var(--indigo-300);
+}
+
+.home-post__body {
+  padding: 14px 16px 14px 0;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.home-post__date {
+  font-family: var(--font-display);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .16em;
+  color: var(--leather);
+}
+.home-post__title {
+  font-family: var(--font-serif-jp);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.65;
+  letter-spacing: .03em;
+  color: var(--indigo-950);
+  margin: .45em 0 .7em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.home-post__more {
+  margin-top: auto;
+  font-family: var(--font-display);
+  font-size: .68rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--indigo-500);
+}
+.home-post:hover .home-post__more { color: var(--redtab); }
+
+@media (min-width: 720px) {
+  .home-post { flex-direction: column; gap: 0; }
+  .home-post__img { width: 100%; aspect-ratio: 16 / 10; align-self: auto; }
+  .home-post__body { padding: 14px 16px 18px; border-top: 1px solid var(--thread); }
+}
+
+/* ---------------- INFO ---------------- */
+/* 店舗情報は夜の帳場: 濃紺デニム地に、縫い付けたラベルのように生成りの箱を置く */
+.home-info {
+  padding-top: clamp(44px, 8vw, 88px);
+  padding-bottom: clamp(48px, 9vw, 96px);
+  background-color: #47546e;
+  background-image: linear-gradient(rgb(42 48 60 / .55), rgb(42 48 60 / .55)), url("../assets/denim.jpg");
+  background-image: linear-gradient(rgb(42 48 60 / .55), rgb(42 48 60 / .55)),
+                    image-set(url("../assets/denim.webp") type("image/webp"),
+                              url("../assets/denim.jpg") type("image/jpeg"));
+  background-size: auto, 820px; /* ECページと同じ織り目のスケールに揃える */
+  background-repeat: repeat, repeat;
+  background-blend-mode: normal, multiply;
+  color: var(--kinari);
+}
+/* INFO(暗)とフッター(暗)を地続きに。間に生成りの隙間を作らない */
+body[data-page="home"] .site-footer { margin-top: 0; }
+.home-info__grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 780px) { .home-info__grid { grid-template-columns: 1.25fr 1fr; gap: 22px; } }
+
+.info-box { display: flex; flex-direction: column; }
+.info-box__tab { align-self: flex-start; margin-bottom: 6px; }
+.info-box__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--indigo-950);
+  margin-bottom: .7em;
+}
+.info-box__text { font-size: .88rem; line-height: 2; }
+
+.info-dl { margin: 0; }
+.info-dl > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--kinari-dark);
+}
+.info-dl > div:last-child { border-bottom: none; }
+.info-dl dt {
+  flex: none;
+  width: 7em;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: var(--indigo-700);
+  line-height: 1.9;
+}
+.info-dl dd { margin: 0; font-size: .9rem; line-height: 1.9; }
+.info-dl .is-tbd { color: var(--muted); }
+
+.info-box__note {
+  margin-top: auto;
+  padding-top: 16px;
+  font-size: .78rem;
+  line-height: 1.95;
+  color: var(--muted);
+}
+.info-box__sns {
+  align-self: flex-start;
+  margin-top: 18px;
+  font-size: .8rem;
+  padding: .9em 1.6em;
+}
+.info-box__sns svg { width: 18px; height: 18px; flex: none; }

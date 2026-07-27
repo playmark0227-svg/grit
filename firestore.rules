@@ -1,0 +1,55 @@
+rules_version = '2';
+
+// ============================================================
+// GRIT Firestore セキュリティルール
+// - products: 誰でも読める / 書き込みは管理者のみ
+// - posts:    published==true のみ公開read / 管理者は全read・write
+// - orders:   クライアントからは一切アクセス不可(Cloud Functions の
+//             Admin SDK のみが書く。Admin SDK はルールの対象外)
+// - 上記以外のコレクションは全て拒否
+//
+// 管理者メールを変更する場合は、以下の3ヶ所を必ず揃えて変更すること:
+//   1. このファイルの isAdmin() 内のリスト
+//   2. storage.rules の isAdmin() 内のリスト
+//   3. public/js/store.js の ADMIN_EMAILS
+// ============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['playmark0227@gmail.com'];
+    }
+
+    // 商品(公開read / 管理者write)
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // ブログ記事(公開されている記事のみ公開read / 管理者は全read・write)
+    match /posts/{postId} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow write: if isAdmin();
+    }
+
+    // 注文
+    // - 作成するのは Cloud Functions(Admin SDK)だけ。クライアントからの
+    //   作成・削除は一切不可(金額や購入内容を偽装されないため)。
+    // - 管理者は発送作業のために読み取り可。
+    // - 管理者の更新は fulfillment(発送済みフラグ)の書き換えのみ許可。
+    match /orders/{orderId} {
+      allow read: if isAdmin();
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['fulfillment'])
+        && request.resource.data.fulfillment in ['unshipped', 'shipped'];
+      allow create, delete: if false;
+    }
+
+    // その他はデフォルト拒否
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

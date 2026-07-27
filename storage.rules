@@ -1,0 +1,39 @@
+rules_version = '2';
+
+// ============================================================
+// GRIT Cloud Storage セキュリティルール
+// - images/**: 誰でも閲覧可 / アップロードは管理者のみ
+//              (画像 MIME タイプのみ・1ファイル 5MB まで)
+// - それ以外のパスは全て拒否
+//
+// 管理者メールを変更する場合は、以下の3ヶ所を必ず揃えて変更すること:
+//   1. このファイルの isAdmin() 内のリスト
+//   2. firestore.rules の isAdmin() 内のリスト
+//   3. public/js/store.js の ADMIN_EMAILS
+// ============================================================
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.token.email in ['playmark0227@gmail.com'];
+    }
+
+    // 商品・ブログ画像
+    match /images/{allPaths=**} {
+      allow read: if true;
+      // アップロード/上書きは管理者のみ。画像のみ・5MB未満。
+      allow create, update: if isAdmin()
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+      // 削除は管理者のみ(削除時 request.resource は null のため別条件)
+      allow delete: if isAdmin();
+    }
+
+    // その他はデフォルト拒否
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}
