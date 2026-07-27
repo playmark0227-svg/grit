@@ -497,9 +497,9 @@
 .home-info {
   padding-top: clamp(44px, 8vw, 88px);
   padding-bottom: clamp(48px, 9vw, 96px);
-  background-color: #47546e;
-  background-image: linear-gradient(rgb(42 48 60 / .55), rgb(42 48 60 / .55)), url("../assets/denim.jpg");
-  background-image: linear-gradient(rgb(42 48 60 / .55), rgb(42 48 60 / .55)),
+  background-color: #3f4a61;
+  background-image: linear-gradient(rgb(14 18 26 / .62), rgb(14 18 26 / .62)), url("../assets/denim.jpg");
+  background-image: linear-gradient(rgb(14 18 26 / .62), rgb(14 18 26 / .62)),
                     image-set(url("../assets/denim.webp") type("image/webp"),
                               url("../assets/denim.jpg") type("image/jpeg"));
   background-size: auto, 820px; /* ECページと同じ織り目のスケールに揃える */
