@@ -1,18 +1,15 @@
 // ============================================================
 // デモモード用サンプルデータ
 // Firebase設定前でもデザイン・動作確認ができるようにするためのもの。
-// 本番では使われません。
+// 本番では使われません(管理ページから登録した実データに置き換わります)。
+//
+// 写真は public/assets/demo/ に置いたサンプル画像(Unsplash)。
+// ライセンスと差し替え方法は public/assets/CREDITS.md を参照。
 // ============================================================
 
-function ph(label, bg, fg) {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="480" height="600">
-  <rect width="480" height="600" fill="${bg}"/>
-  <rect x="14" y="14" width="452" height="572" fill="none" stroke="${fg}" stroke-width="1" opacity="0.35"/>
-  <text x="34" y="54" font-family="Georgia, Times New Roman, serif" font-size="16" font-weight="bold" letter-spacing="5" fill="${fg}" opacity="0.9">GRIT</text>
-  <text x="240" y="312" font-family="Georgia, Times New Roman, serif" font-size="30" font-weight="bold" letter-spacing="5" fill="${fg}" text-anchor="middle">${label}</text>
-  <text x="240" y="348" font-family="Georgia, Times New Roman, serif" font-size="12" letter-spacing="3" fill="${fg}" text-anchor="middle" opacity="0.6">SAMPLE ITEM</text>
-</svg>`;
-  return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+/** demo画像のURL。サブディレクトリ配信でも壊れないよう自分の位置から解決する */
+function img(name) {
+  return new URL(`../assets/demo/${name}`, import.meta.url).href;
 }
 
 const daysAgo = (n) => new Date(Date.now() - n * 86400000);
@@ -27,7 +24,7 @@ export const DEMO_PRODUCTS = [
     category: "アウター",
     condition: "B(全体的に良好・色落ち良し)",
     description: "60年代のデニムジャケット。\n程よく色落ちしたインディゴが美しい一着です。\n袖口にわずかなリペアあり(写真参照)。",
-    images: [ph("DENIM JACKET", "#242a33", "#a49c8a"), ph("DETAIL", "#1b2027", "#a49c8a")],
+    images: [img("p1-denim-jacket.jpg"), img("p1-detail.jpg")],
     status: "available",
     reservedUntil: null,
     createdAt: daysAgo(1),
@@ -41,8 +38,8 @@ export const DEMO_PRODUCTS = [
     size: "L(実寸 肩46 身幅56 着丈74)",
     category: "トップス",
     condition: "A(美品)",
-    description: "70年代のヘビーネルシャツ。\n赤×黒のバッファローチェック。肉厚でアウター使いもおすすめです。",
-    images: [ph("FLANNEL SHIRT", "#2e2a28", "#a49c8a")],
+    description: "70年代のヘビーネルシャツ。\n黒×グレーのバッファローチェック。肉厚でアウター使いもおすすめです。",
+    images: [img("p2-flannel.jpg")],
     status: "available",
     reservedUntil: null,
     createdAt: daysAgo(2),
@@ -56,8 +53,8 @@ export const DEMO_PRODUCTS = [
     size: "XL(実寸 肩50 身幅60 着丈68)",
     category: "トップス",
     condition: "B(良好・多少の使用感)",
-    description: "80年代のリバースウィーブ。\n杢グレーの定番カラー。目の詰まった生地でこれからの季節に活躍します。",
-    images: [ph("SWEAT SHIRT", "#33353a", "#a49c8a")],
+    description: "80年代のリバースウィーブ。\nブラックの定番カラー。目の詰まった生地でこれからの季節に活躍します。",
+    images: [img("p3-sweat.jpg")],
     status: "available",
     reservedUntil: null,
     createdAt: daysAgo(3),
@@ -72,7 +69,7 @@ export const DEMO_PRODUCTS = [
     category: "デニム",
     condition: "B(良好)",
     description: "90年代のストレートデニム。\nUSA製。濃いめのインディゴでこれから育てがいのある一本です。",
-    images: [ph("DENIM PANTS", "#1b2027", "#a49c8a")],
+    images: [img("p4-jeans.jpg")],
     status: "available",
     reservedUntil: null,
     createdAt: daysAgo(4),
@@ -87,7 +84,7 @@ export const DEMO_PRODUCTS = [
     category: "ボトムス",
     condition: "C(使用感あり・雰囲気良し)",
     description: "50年代のワークパンツ。\nヘリンボーンツイル生地。経年の風合いがたまらない一本。\n膝に小さなリペアあり。",
-    images: [ph("WORK PANTS", "#2c2d29", "#a49c8a")],
+    images: [img("p5-workpants.jpg")],
     status: "available",
     reservedUntil: null,
     createdAt: daysAgo(6),
@@ -102,7 +99,7 @@ export const DEMO_PRODUCTS = [
     category: "小物",
     condition: "B(良好)",
     description: "ヴィンテージのコットンバンダナ。\n首元やバッグのアクセントに。",
-    images: [ph("BANDANA", "#302926", "#a49c8a")],
+    images: [img("p6-bandana.jpg")],
     status: "available",
     reservedUntil: null,
     createdAt: daysAgo(7),
@@ -110,14 +107,14 @@ export const DEMO_PRODUCTS = [
   },
   {
     id: "demo-p7",
-    name: "レザーベルト 茶",
+    name: "サドルレザーベルト",
     brand: "no brand",
     price: 3800,
     size: "85cm(表記)",
     category: "小物",
     condition: "B(良好)",
-    description: "厚手のサドルレザーベルト。\n経年のツヤが出ています。",
-    images: [ph("LEATHER BELT", "#332c25", "#a49c8a")],
+    description: "厚手のサドルレザーベルト。\n使い込まれた艶と、深く入ったシワが良い表情です。",
+    images: [img("p7-belt.jpg")],
     status: "sold",
     reservedUntil: null,
     createdAt: daysAgo(9),
@@ -132,7 +129,7 @@ export const DEMO_PRODUCTS = [
     category: "アウター",
     condition: "B(良好)",
     description: "70年代のM-65フィールドジャケット。\nオリーブの色味が抜けて良い雰囲気です。\nライナーは付属しません。",
-    images: [ph("FIELD JACKET", "#2a2e28", "#a49c8a")],
+    images: [img("p8-military.jpg")],
     status: "available",
     reservedUntil: null,
     createdAt: daysAgo(10),
@@ -146,7 +143,7 @@ export const DEMO_ORDERS = [
   {
     id: "cs_demo_0001",
     sessionId: "cs_demo_0001",
-    items: [{ id: "demo-p7", name: "レザーベルト 茶", price: 3800 }],
+    items: [{ id: "demo-p7", name: "サドルレザーベルト", price: 3800 }],
     amount: 3800,
     shippingFee: 0,
     customerEmail: "sample-customer@example.com",
@@ -181,7 +178,7 @@ export const DEMO_POSTS = [
     id: "demo-b1",
     title: "オンラインストアをオープンしました",
     body: "GRITのオンラインストアをオープンしました。\n\n店頭に並んでいる一点物を、少しずつオンラインにも掲載していきます。\n気になるアイテムがあれば、売り切れる前にぜひチェックしてください。\n\n今後は入荷情報やスタイリングのヒントもこのブログでお知らせしていきます。",
-    coverImage: ph("OPEN", "#20242b", "#a49c8a"),
+    coverImage: img("b1-store.jpg"),
     published: true,
     createdAt: daysAgo(2),
     updatedAt: daysAgo(2),
@@ -190,7 +187,7 @@ export const DEMO_POSTS = [
     id: "demo-b2",
     title: "デニムジャケット、まとめて入荷しました",
     body: "60s〜90sのデニムジャケットをまとめて入荷しました。\n\n色落ちの表情はどれも一点ごとに違います。\n実寸サイズを載せているので、手持ちの一着と比べてみてください。\n\nオンライン掲載分はSHOPページからどうぞ。",
-    coverImage: ph("NEW ARRIVAL", "#242a33", "#a49c8a"),
+    coverImage: img("b2-jeans-stack.jpg"),
     published: true,
     createdAt: daysAgo(5),
     updatedAt: daysAgo(5),
