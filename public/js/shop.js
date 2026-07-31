@@ -18,14 +18,13 @@ const EAGER_IMAGES = 4; // ファーストビュー分のみ eager、それ以�
 let allProducts = [];
 let activeCategory = ALL;
 
-// 画像未設定の商品用プレースホルダ(生成り地 + ステッチ枠)
+// 画像未設定の商品用プレースホルダ(薄いグレーの面)
 const NO_IMAGE =
   "data:image/svg+xml;utf8," +
   encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="480" height="600">` +
-      `<rect width="480" height="600" fill="#b3ab99"/>` +
-      `<rect x="14" y="14" width="452" height="572" fill="none" stroke="#96683c" stroke-width="1" opacity="0.3"/>` +
-      `<text x="240" y="308" font-family="Helvetica, Arial, sans-serif" font-size="22" font-weight="bold" letter-spacing="6" fill="#6b6355" text-anchor="middle" opacity="0.7">NO IMAGE</text>` +
+    `<svg xmlns="http://www.w3.org/2000/svg" width="480" height="640">` +
+      `<rect width="480" height="640" fill="#f2f2f0"/>` +
+      `<text x="240" y="326" font-family="Helvetica, Arial, sans-serif" font-size="15" letter-spacing="4" fill="#9a9a97" text-anchor="middle">NO IMAGE</text>` +
       `</svg>`
   );
 

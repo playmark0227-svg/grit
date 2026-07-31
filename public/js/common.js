@@ -126,23 +126,22 @@ const CART_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" str
 function headerHTML() {
   return `
   <header class="site-header">
-    <div class="selvedge-strip" aria-hidden="true"></div>
     <div class="site-header__bar container">
-      <a class="site-logo" href="${BASE}" aria-label="GRIT ホーム">
-        <span class="site-logo__text">GRIT</span>
-        <span class="red-tab">Vintage</span>
+      <a class="site-logo" href="${BASE}" aria-label="Grit. ホーム">
+        <span class="site-logo__text">Grit.</span>
       </a>
       <nav class="site-nav" id="site-nav" aria-label="サイトメニュー">
-        <a href="${BASE}" data-nav="home">Home</a>
+        <a href="${BASE}#about" data-nav="about">About</a>
         <a href="${BASE}shop/" data-nav="shop">Shop</a>
-        <a href="${BASE}blog.html" data-nav="blog">Blog</a>
-        <a href="${BASE}#info" data-nav="info">Info</a>
+        <a href="${BASE}blog.html" data-nav="blog">Journal</a>
+        <a href="${BASE}#access" data-nav="access">Access</a>
       </nav>
       <div class="site-header__right">
         <a class="cart-link" href="${BASE}shop/cart.html" aria-label="カートを見る">
           ${CART_SVG}
           <span class="cart-link__count" data-cart-count hidden>0</span>
         </a>
+        <a class="header-shop" href="${BASE}shop/">Online Store</a>
         <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" aria-controls="site-nav">
           <span></span><span></span><span></span>
         </button>
@@ -155,21 +154,24 @@ function footerHTML() {
   const y = new Date().getFullYear();
   return `
   <footer class="site-footer">
-    <div class="selvedge-strip" aria-hidden="true"></div>
     <div class="container site-footer__inner">
       <div class="site-footer__top">
         <div class="site-footer__brand">
-          <span class="site-logo__text">GRIT</span>
-          <p class="site-footer__lead">一点物と、暮らす。<br>ヴィンテージ&古着 GRIT</p>
+          <span class="site-logo__text">Grit.</span>
+          <p class="site-footer__lead">
+            良い服と、良い時間を。<br>
+            〒063-0812 北海道札幌市西区琴似2条2丁目1-3 テーオービル 2F<br>
+            13:00 – 20:00 / 月曜定休
+          </p>
         </div>
         <nav class="site-footer__nav" aria-label="フッターメニュー">
-          <a href="${BASE}">Home</a>
+          <a href="${BASE}#about">About</a>
           <a href="${BASE}shop/">Shop</a>
-          <a href="${BASE}blog.html">Blog</a>
-          <a href="${BASE}#info">Info</a>
+          <a href="${BASE}blog.html">Journal</a>
+          <a href="${BASE}#access">Access</a>
         </nav>
       </div>
-      <p class="site-footer__copy">&copy; ${y} GRIT — Vintage &amp; Used Clothing</p>
+      <p class="site-footer__copy">&copy; ${y} Grit. All Rights Reserved.</p>
     </div>
   </footer>`;
 }

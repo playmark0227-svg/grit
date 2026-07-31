@@ -75,7 +75,7 @@ function renderProduct(p) {
     .filter((u) => typeof u === "string" && u);
   const available = isAvailable(p);
 
-  document.title = `${p.name} | GRIT`;
+  document.title = `${p.name} | Grit.`;
 
   const mainMedia = images.length
     ? `<img id="pd-main-img" src="${esc(images[0])}" alt="${esc(p.name)}">`
@@ -107,7 +107,7 @@ function renderProduct(p) {
           ${thumbs}
         </div>
         <div class="pd-info">
-          <p class="pd-brand"><span>${esc(p.brand || "no brand")}</span><span class="red-tab">GRIT</span></p>
+          <p class="pd-brand">${esc(p.brand || "no brand")}</p>
           <h1 class="pd-name">${esc(p.name)}</h1>
           <p class="pd-price">${yen(p.price)}<span class="pd-price__tax">税込</span></p>
           <div class="pd-tags">${tags}</div>

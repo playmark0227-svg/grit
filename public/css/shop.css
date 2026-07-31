@@ -1,188 +1,108 @@
 /* ============================================================
    GRIT — ECトップ (shop.css)
-   全面デニム背景の上: 生成りタイポのヒーロー + カテゴリチップ + 商品グリッド
-   共通クラスは base.css を使用。ここはこのページ固有の装飾のみ。
+   白地の導入 + 枠なしのカテゴリ絞り込み + 商品グリッド。
+   服の写真が余白に浮かぶ「陳列」を目指す。装飾は足さない。
+   共通クラスは base.css。ここで再定義しないこと。
    ============================================================ */
 
-/* ---------- ヒーロー ---------- */
+/* ---------- 導入 ----------
+   写真は使わない。白い面に見出しと一文だけを置く。 */
 
-/* ヒーローは実物のジーンズ写真(縫い目・ステッチ入り)を大きく敷く。
-   1枚目のレイヤーは文字を読ませるための暗いスクリム。
-   texture: Poly Haven "Denim Fabric" / CC0 */
-.shop-hero {
-  position: relative;
-  overflow: hidden;
-  padding-block: clamp(52px, 10vw, 104px) 0;
-  background-color: #56637f;
-  background-image:
-    linear-gradient(96deg, rgb(8 11 16 / .9) 0%, rgb(8 11 16 / .72) 38%, rgb(10 14 20 / .42) 78%, rgb(10 14 20 / .34) 100%),
-    url("../assets/denim-seam.jpg");
-  background-image:
-    linear-gradient(96deg, rgb(8 11 16 / .9) 0%, rgb(8 11 16 / .72) 38%, rgb(10 14 20 / .42) 78%, rgb(10 14 20 / .34) 100%),
-    image-set(url("../assets/denim-seam.webp") type("image/webp"),
-              url("../assets/denim-seam.jpg") type("image/jpeg"));
-  background-size: cover, cover;
-  background-position: center, 68% 42%;
-  background-repeat: no-repeat, no-repeat;
-  background-blend-mode: normal, multiply;
-  box-shadow: inset 0 -1px 0 rgb(234 225 200 / .12);
+.shop-intro {
+  padding-block: clamp(56px, 9vw, 128px) clamp(36px, 5vw, 64px);
 }
 
-.shop-hero__inner {
-  position: relative;
-}
-
-.shop-hero__eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 1em;
+.shop-intro__en {
   font-family: var(--font-display);
-  font-size: .74rem;
-  font-weight: 500;
-  letter-spacing: .34em;
-  text-transform: uppercase;
-  color: var(--indigo-300);
-}
-.shop-hero__eyebrow::before {
-  content: "";
-  width: 2.6em;
-  height: 2px;
-  background: var(--thread);
-  flex: none;
-}
-
-.shop-hero__title {
-  margin-top: .1em;
-  line-height: 1;
-}
-.shop-hero__word {
-  position: relative;
-  display: inline-block;
-  font-family: var(--font-display-big);
-  font-weight: 400;
-  font-size: clamp(3.9rem, 16vw, 7.6rem);
-  letter-spacing: .03em;
-  line-height: 1;
-  color: var(--kinari);
-  text-shadow: 0 4px 14px rgb(10 16 27 / .45);
-}
-
-/* 赤タブ: ジーンズのポケットタブのように縦向きで右肩に */
-.shop-hero__tab {
-  position: absolute;
-  left: 100%;
-  top: .14em;
-  margin-left: clamp(8px, 1.6vw, 15px);
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: none;
-  font-size: clamp(.6rem, 1.7vw, .8rem);
-  letter-spacing: .24em;
-  padding: .7em .5em .55em;
-}
-
-.shop-hero__catch {
-  margin-top: clamp(20px, 3.8vw, 30px);
-  font-family: var(--font-serif-jp);
   font-weight: 600;
-  font-size: clamp(1.05rem, 3.6vw, 1.4rem);
-  letter-spacing: .14em;
-  color: var(--kinari);
+  font-size: clamp(2.2rem, 7vw, 3.6rem);
+  letter-spacing: -.015em;
+  line-height: 1.1;
+  color: var(--ink);
 }
 
-.shop-hero__sub {
-  margin-top: .8em;
+/* 和文は大きくせず、字間を広めに取って静かに置く */
+.shop-intro__ja {
+  margin-top: 1.1em;
+  font-size: .78rem;
+  font-weight: 400;
+  letter-spacing: .22em;
+  color: var(--ink-soft);
+}
+
+.shop-intro__lead {
+  margin-top: clamp(22px, 3.4vw, 34px);
+  max-width: 32em;
   font-size: .86rem;
-  letter-spacing: .05em;
-  line-height: 2.1;
-  /* デニム地の上で読みやすいよう生成り寄りに */
-  color: rgb(242 236 221 / .82);
+  letter-spacing: .1em;
+  line-height: 2.4;
+  color: var(--ink-mid);
 }
 
-/* 巻き縫いシーム(2本の平行ステッチ) */
-.shop-hero__seam {
-  margin-top: clamp(30px, 5.5vw, 50px);
-  height: 9px;
-  border-top: 1px solid rgb(176 138 82 / .5);
-  border-bottom: 1px solid rgb(176 138 82 / .28);
-}
-
-/* 飾りの弧は廃止(ヒーロー写真に本物のステッチが写っているため) */
-.shop-hero__arc { display: none; }
-
-/* ---------- カテゴリフィルタ ---------- */
+/* ---------- カテゴリ絞り込み ----------
+   チップにしない。下線だけで現在地を示すテキストの列。 */
 
 .shop-filter {
   position: sticky;
-  top: calc(var(--header-h) + 6px); /* ヘッダー(セルビッジ6px + バー)の直下に張り付く */
+  top: var(--header-h);
   z-index: 60;
-  background: rgb(15 24 38 / .92);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid rgb(242 236 221 / .12);
+  background: rgb(255 255 255 / .94);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--line);
 }
 
 .shop-filter__scroll {
   display: flex;
-  gap: 8px;
+  align-items: stretch;
+  gap: clamp(20px, 3.4vw, 40px);
   overflow-x: auto;
-  padding-block: 12px;
+  /* 現在地の下線が、バー下端のヘアラインと重ならないよう少し浮かせる */
+  padding-block: 4px 10px;
   /* コンテナ余白を突き抜けて画面端までスクロールできるように */
-  margin-inline: calc(-1 * clamp(16px, 4vw, 32px));
-  padding-inline: clamp(16px, 4vw, 32px);
+  margin-inline: calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
 }
 .shop-filter__scroll::-webkit-scrollbar { display: none; }
+
 /* 右端をフェードさせて「まだ続く=スクロールできる」ことを伝える */
 @media (max-width: 899px) {
   .shop-filter__scroll {
-    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 42px), transparent 100%);
-    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 42px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 40px), transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 40px), transparent 100%);
   }
 }
 
-/* チップのタップ領域を44px確保(レイアウト調整のみ・見た目はbase.cssの.tag) */
+/* タップ領域を44px確保(見た目は base.css の .tag のまま) */
 .shop-filter__scroll .tag {
   flex: none;
   display: inline-flex;
   align-items: center;
-  min-height: 44px;
+  min-height: 48px;
   padding-block: 0;
 }
 
 /* ---------- 商品一覧 ---------- */
 
 .shop-products {
-  padding-block: clamp(26px, 5vw, 46px) clamp(60px, 10vw, 110px);
+  padding-block: clamp(30px, 4.5vw, 52px) var(--sec-pad);
 }
 
 .shop-products__count {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: clamp(18px, 3.5vw, 30px);
+  margin-bottom: clamp(22px, 3.4vw, 36px);
   font-family: var(--font-display);
-  font-size: .78rem;
-  font-weight: 500;
-  letter-spacing: .3em;
+  font-size: .72rem;
+  font-weight: 400;
+  letter-spacing: .2em;
   text-transform: uppercase;
-  color: var(--indigo-300);
-}
-.shop-products__count::after {
-  content: "";
-  flex: 1;
-  border-top: 1px solid rgb(242 236 221 / .22);
+  color: var(--ink-soft);
 }
 
 /* 空状態・エラーはグリッド全幅に */
 .grid-products > .empty-note {
   grid-column: 1 / -1;
-}
-
-/* スケルトンをデニム地の上でうっすらカードに見せる */
-.grid-products .skeleton {
-  background-color: rgb(242 236 221 / .06);
 }
 
 /* サイズ表記が長い場合は省略(375pxで価格を守る) */
@@ -194,13 +114,11 @@
 }
 .grid-products .p-card__price { flex: none; }
 
+/* SOLD カードの減光(base.css)は、motion.js のフェードイン
+   (animation-fill-mode: both)に opacity を握られて効かなくなるため、
+   SOLD のときだけアニメーションを外して減光を活かす */
+.grid-products .p-card--sold .p-card__img img { animation: none; }
+
 /* 入場アニメーションは base.css の [data-reveal] に一本化した。
    ここで opacity:0 の animation を重ねると、アニメーションが走らない状況
    (バックグラウンドタブなど)でカードが消えたままになるため置かない。 */
-
-/* ---------- レスポンシブ小物 ---------- */
-
-.sp-only { display: inline; }
-@media (min-width: 640px) {
-  .sp-only { display: none; }
-}

@@ -3,202 +3,142 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>一点物と、暮らす。ヴィンテージ&古着 | GRIT</title>
-  <meta name="description" content="GRIT(グリット)は、アメリカ古着・ヴィンテージを中心に一点物だけを扱う古着屋です。デニム、ミリタリー、ワーク——時を経た一着との一度きりの出会いを、オンラインストアでお届けします。">
+  <title>Grit. | 札幌・琴似の古着屋</title>
+  <meta name="description" content="Grit.(グリット)は札幌・琴似にある古着屋です。90〜00'sを中心に、質感やサイズ、デザインにこだわった古着をセレクトしています。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/home.css">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20fill='%238a352c'/%3E%3Ctext%20x='16'%20y='23'%20font-family='Georgia,%20serif'%20font-size='19'%20font-weight='bold'%20fill='%23f2ecdd'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20fill='%23111111'/%3E%3Ctext%20x='16'%20y='22'%20font-family='Helvetica,%20Arial,%20sans-serif'%20font-size='17'%20font-weight='600'%20fill='%23ffffff'%20text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
 </head>
 <body data-page="home">
   <div id="site-header"></div>
 
   <main>
-    <!-- ================= HERO ================= -->
-    <!-- 背景写真は差し替え前提のダミー(店舗を撮影したら
-         public/assets/demo/hero-store.jpg を同名で置き換えるだけ) -->
-    <section class="hero hero--photo">
-      <div class="hero__media" aria-hidden="true" data-parallax="0.14">
-        <img class="hero__img" src="assets/demo/hero-store.jpg" alt="" fetchpriority="high" data-no-fade>
+    <!-- ================= HERO =================
+         背景写真は差し替え前提のダミー。店舗を撮影したら
+         assets/demo/hero-store.jpg を同名で置き換えるだけ -->
+    <section class="hero">
+      <div class="hero__media">
+        <img class="hero__img" src="assets/demo/hero-store.jpg"
+             alt="Grit. の店内" fetchpriority="high" data-no-fade>
       </div>
       <div class="container hero__inner">
-        <div class="hero__text">
-          <p class="hero__eyebrow">Vintage &amp; Used Clothing</p>
-          <h1 class="hero__title">
-            <span class="hero__grit">GRIT<span class="red-tab hero__tab" aria-hidden="true">Vintage</span></span>
-          </h1>
-          <p class="hero__catch">一点物と、暮らす。</p>
-          <p class="hero__lead">時を重ねた一着には、前の持ち主の物語が縫い込まれている。<br class="br-pc">デニム、ミリタリー、ワーク。目と手でたしかめた古着だけを、一点ずつ。<br class="br-pc">出会いは、いつも一度きり。</p>
-          <div class="hero__cta">
-            <a class="btn btn--red btn--lg" href="shop/">SHOPを見る</a>
-            <a class="btn btn--cream btn--lg" href="#about">GRITについて</a>
-          </div>
-        </div>
-
-        <!-- 下げ札(写真の上に重ねる) -->
-        <div class="hero__hangtag" aria-hidden="true">
-          <span class="hero__hangtag-hole"></span>
-          <span class="hero__hangtag-en">One-off</span>
-          <span class="hero__hangtag-ja">一点物</span>
-          <span class="hero__hangtag-note">No.____</span>
-        </div>
+        <h1 class="hero__title">Clean space,<br>curated chaos.</h1>
+        <p class="hero__catch">良い服と、良い時間を。</p>
+        <a class="link-arrow hero__link" href="#about">About Grit.</a>
       </div>
-      <span class="hero__side" aria-hidden="true">One-off Vintage — Worn &amp; Loved</span>
-      <div class="hero__scroll" aria-hidden="true">Scroll</div>
     </section>
 
-    <div class="selvedge" aria-hidden="true"></div>
-
     <!-- ================= ABOUT ================= -->
-    <section id="about" class="home-sec home-about">
-      <div class="container">
-        <div class="section-head" data-reveal>
-          <h2 class="section-head__en">About</h2>
-          <p class="section-head__ja">グリットについて</p>
-        </div>
-        <div class="home-about__lead">
-          <div class="home-about__body" data-reveal>
-            <p>GRITは、アメリカの古着・ヴィンテージを中心に扱う古着屋です。デニム、ミリタリー、ワーク、スウェット——長い時間を生き抜いてきた本物だけを、一点ずつ手にとって選んでいます。</p>
-            <p>大量生産の服にはない、揺らぎと個性。前の持ち主が刻んだ色落ちやアタリ、小さなリペアの跡は、その一着にしかない模様です。わたしたちは、その表情に惚れ込んだものだけを仕入れています。</p>
-            <p>袖を通したその日から、今度はあなたの時間が縫い足されていく。GRITは、そんな「育てる服」との出会いの場でありたいと考えています。</p>
+    <section id="about" class="section home-about">
+      <div class="container home-about__inner">
+        <figure class="home-about__photo" data-reveal>
+          <img src="assets/demo/about-rack.jpg" alt="店内に並ぶ古着" loading="lazy">
+        </figure>
+        <div class="home-about__body" data-reveal>
+          <h2 class="section-head__en">About Grit.</h2>
+          <div class="home-about__text">
+            <p>Grit.は札幌・琴似にある古着屋です。</p>
+            <p>90〜00's を中心に、質感やサイズ、デザインに<br class="br-pc">こだわった古着をセレクトしています。</p>
+            <p>服を通して、日常が少し楽しくなるような<br class="br-pc">きっかけを届けられたら嬉しいです。</p>
           </div>
-          <figure class="home-about__photo" data-reveal>
-            <img src="assets/demo/about-rack.jpg" alt="店内に並ぶ古着" loading="lazy">
-            <figcaption>店内の様子(写真は準備中のイメージです)</figcaption>
-          </figure>
-        </div>
-        <div class="home-about__grid" data-reveal="stagger">
-          <div class="stitch-box about-card">
-            <p class="about-card__num"><span>01</span><span>One-off</span></p>
-            <h3 class="about-card__title">一点物だけ。</h3>
-            <p class="about-card__text">並ぶのはすべて一点物。同じ色落ち、同じ表情はふたつとありません。迷ったときが、出会いのとき。</p>
-          </div>
-          <div class="stitch-box about-card">
-            <p class="about-card__num"><span>02</span><span>Condition</span></p>
-            <h3 class="about-card__title">状態にこだわる。</h3>
-            <p class="about-card__text">仕入れた一着は、状態をひとつずつ確認してから店頭へ。気になる箇所は、商品説明に正直に書きます。</p>
-          </div>
-          <div class="stitch-box about-card">
-            <p class="about-card__num"><span>03</span><span>Aging</span></p>
-            <h3 class="about-card__title">経年変化を楽しむ。</h3>
-            <p class="about-card__text">色褪せもアタリも、時間がつくった味。ここからさらに育てていく楽しみごと、お渡しします。</p>
-          </div>
+          <a class="link-arrow" href="shop/">View More</a>
         </div>
       </div>
     </section>
 
     <!-- ================= NEW ARRIVALS ================= -->
-    <section id="new-arrivals" class="home-sec home-arrivals">
+    <section class="section home-arrivals bg-soft">
       <div class="container">
-        <div class="section-head" data-reveal>
+        <div class="home-row-head" data-reveal>
           <h2 class="section-head__en">New Arrivals</h2>
-          <p class="section-head__ja">新着アイテム</p>
+          <a class="link-arrow link-arrow--sm" href="shop/">View All</a>
         </div>
         <div class="grid-products" id="arrivals-grid" data-reveal="stagger" aria-busy="true">
-          <div class="home-skel" aria-hidden="true"></div>
-          <div class="home-skel" aria-hidden="true"></div>
-          <div class="home-skel" aria-hidden="true"></div>
-          <div class="home-skel" aria-hidden="true"></div>
-        </div>
-        <p class="home-more">
-          <a class="home-more__link" href="shop/">すべて見る<span class="home-more__arrow" aria-hidden="true">→</span></a>
-        </p>
-      </div>
-    </section>
-
-    <!-- ================= BLOG ================= -->
-    <section id="blog" class="home-sec home-blog">
-      <div class="container">
-        <div class="section-head" data-reveal>
-          <h2 class="section-head__en">Blog</h2>
-          <p class="section-head__ja">入荷情報と読みもの</p>
-        </div>
-        <div class="home-posts" id="blog-list" data-reveal="stagger" aria-busy="true">
-          <div class="home-skel home-skel--post" aria-hidden="true"></div>
-          <div class="home-skel home-skel--post" aria-hidden="true"></div>
-          <div class="home-skel home-skel--post" aria-hidden="true"></div>
-        </div>
-        <p class="home-more">
-          <a class="home-more__link" href="blog.html">ブログ一覧<span class="home-more__arrow" aria-hidden="true">→</span></a>
-        </p>
-      </div>
-    </section>
-
-    <!-- ================= LOOKBOOK(流れる写真の帯) ================= -->
-    <section class="lookbook" aria-label="店内とアイテムの写真">
-      <div class="lookbook__track" aria-hidden="true">
-        <div class="lookbook__set">
-          <img src="assets/demo/detail-hats.jpg" alt="" loading="lazy">
-          <img src="assets/demo/p1-denim-jacket.jpg" alt="" loading="lazy">
-          <img src="assets/demo/b1-store.jpg" alt="" loading="lazy">
-          <img src="assets/demo/p8-military.jpg" alt="" loading="lazy">
-          <img src="assets/demo/detail-goods.jpg" alt="" loading="lazy">
-          <img src="assets/demo/p4-jeans.jpg" alt="" loading="lazy">
-          <img src="assets/demo/about-rack.jpg" alt="" loading="lazy">
-          <img src="assets/demo/p6-bandana.jpg" alt="" loading="lazy">
-        </div>
-        <div class="lookbook__set">
-          <img src="assets/demo/detail-hats.jpg" alt="" loading="lazy">
-          <img src="assets/demo/p1-denim-jacket.jpg" alt="" loading="lazy">
-          <img src="assets/demo/b1-store.jpg" alt="" loading="lazy">
-          <img src="assets/demo/p8-military.jpg" alt="" loading="lazy">
-          <img src="assets/demo/detail-goods.jpg" alt="" loading="lazy">
-          <img src="assets/demo/p4-jeans.jpg" alt="" loading="lazy">
-          <img src="assets/demo/about-rack.jpg" alt="" loading="lazy">
-          <img src="assets/demo/p6-bandana.jpg" alt="" loading="lazy">
+          <div class="skeleton skeleton-card" aria-hidden="true"></div>
+          <div class="skeleton skeleton-card" aria-hidden="true"></div>
+          <div class="skeleton skeleton-card" aria-hidden="true"></div>
+          <div class="skeleton skeleton-card" aria-hidden="true"></div>
         </div>
       </div>
     </section>
 
-    <!-- ================= INFO ================= -->
-    <section id="info" class="home-sec home-info">
-      <div class="home-info__media" aria-hidden="true" data-parallax="0.08">
-        <img src="assets/demo/store-front.jpg" alt="" loading="lazy" data-no-fade>
-      </div>
-      <div class="container">
-        <div class="section-head section-head--light" data-reveal>
-          <h2 class="section-head__en">Info</h2>
-          <p class="section-head__ja">店舗情報</p>
-        </div>
-        <div class="home-info__grid" data-reveal="stagger">
-          <div class="stitch-box info-box">
-            <h3 class="info-box__title">Store</h3>
-            <dl class="info-dl">
-              <div>
-                <dt>店名</dt>
-                <dd>ヴィンテージ&amp;古着 GRIT</dd>
-              </div>
-              <div>
-                <dt>営業時間</dt>
-                <dd class="is-tbd">(準備中)</dd>
-              </div>
-              <div>
-                <dt>定休日</dt>
-                <dd class="is-tbd">(準備中)</dd>
-              </div>
-              <div>
-                <dt>住所</dt>
-                <dd class="is-tbd">(準備中)</dd>
-              </div>
-              <div>
-                <dt>お問い合わせ</dt>
-                <dd class="is-tbd">(準備中)</dd>
-              </div>
-            </dl>
-            <p class="info-box__note">実店舗の営業情報は準備中です。決まり次第、このページとSNSでお知らせします。</p>
+    <!-- ================= JOURNAL / GALLERY ================= -->
+    <section class="section home-two">
+      <div class="container home-two__inner">
+        <div class="home-two__col">
+          <div class="home-row-head" data-reveal>
+            <h2 class="section-head__en">Journal</h2>
+            <a class="link-arrow link-arrow--sm" href="blog.html">View All</a>
           </div>
-          <div class="stitch-box info-box">
-            <h3 class="info-box__title">SNS</h3>
-            <p class="info-box__text">入荷情報やスタイリングのヒントは、SNSとブログでお知らせしていきます。</p>
-            <a class="btn btn--ghost info-box__sns" href="#">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.2" fill="currentColor" stroke="none"/></svg>
-              Instagram(準備中)
+          <div class="home-posts" id="blog-list" data-reveal="stagger" aria-busy="true">
+            <div class="skeleton home-post__skel" aria-hidden="true"></div>
+            <div class="skeleton home-post__skel" aria-hidden="true"></div>
+            <div class="skeleton home-post__skel" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="home-two__col">
+          <div class="home-row-head" data-reveal>
+            <h2 class="section-head__en">Gallery</h2>
+          </div>
+          <!-- SNSアカウント開設後、ここをInstagramの埋め込みに差し替えられる -->
+          <div class="home-gallery" data-reveal="stagger">
+            <a class="home-gallery__item" href="shop/">
+              <img src="assets/demo/gallery-1.jpg" alt="" loading="lazy">
             </a>
-            <p class="info-box__note">アカウントは開設準備中です。もうしばらくお待ちください。</p>
+            <a class="home-gallery__item" href="shop/">
+              <img src="assets/demo/gallery-2.jpg" alt="" loading="lazy">
+            </a>
+            <a class="home-gallery__item" href="shop/">
+              <img src="assets/demo/gallery-3.jpg" alt="" loading="lazy">
+            </a>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- ================= INFO / ACCESS ================= -->
+    <section id="access" class="section home-info bg-soft">
+      <div class="container home-info__inner">
+        <div class="home-info__col" data-reveal>
+          <h2 class="section-head__en">Info</h2>
+          <dl class="info-dl">
+            <div>
+              <dt>Store</dt>
+              <dd>
+                〒063-0812<br>
+                北海道札幌市西区琴似2条2丁目1-3<br>
+                テーオービル 2F
+              </dd>
+            </div>
+            <div>
+              <dt>Tel</dt>
+              <dd><a href="tel:08060944227">080-6094-4227</a></dd>
+            </div>
+            <div>
+              <dt>Open</dt>
+              <dd>13:00 – 20:00</dd>
+            </div>
+            <div>
+              <dt>Close</dt>
+              <dd>Monday</dd>
+            </div>
+          </dl>
+        </div>
+
+        <aside class="home-store" data-reveal>
+          <div class="home-store__img">
+            <img src="assets/demo/p8-military.jpg" alt="" loading="lazy">
+          </div>
+          <div class="home-store__body">
+            <h3 class="home-store__title">Online Store</h3>
+            <p class="home-store__text">全国発送承っております。</p>
+            <a class="link-arrow link-arrow--sm" href="shop/">Shop Now</a>
+          </div>
+        </aside>
       </div>
     </section>
   </main>
@@ -211,21 +151,26 @@
     import { getLatestProducts, getPosts, isAvailable } from "./js/store.js";
     import { esc, yen, fmtDate, shortSize, BASE } from "./js/common.js";
 
-    const FALLBACK_IMG = "data:image/svg+xml;utf8," + encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" width="480" height="600"><rect width="480" height="600" fill="#b3ab99"/><text x="240" y="308" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="bold" letter-spacing="6" fill="#6b6355" text-anchor="middle">GRIT</text></svg>'
-    );
+    const NO_IMAGE =
+      "data:image/svg+xml;utf8," +
+      encodeURIComponent(
+        `<svg xmlns="http://www.w3.org/2000/svg" width="480" height="640">` +
+          `<rect width="480" height="640" fill="#f2f2f0"/>` +
+          `<text x="240" y="326" font-family="Helvetica, Arial, sans-serif" font-size="15" letter-spacing="4" fill="#9a9a97" text-anchor="middle">NO IMAGE</text>` +
+          `</svg>`
+      );
 
     function productCardHTML(p) {
       const sold = !isAvailable(p);
-      const img = (Array.isArray(p.images) && p.images[0]) || FALLBACK_IMG;
+      const img = (Array.isArray(p.images) && p.images[0]) || NO_IMAGE;
       return `
-      <a class="p-card${sold ? " p-card--sold" : ""}" href="shop/product.html?id=${encodeURIComponent(p.id)}">
+      <a class="p-card${sold ? " p-card--sold" : ""}" href="${BASE}shop/product.html?id=${encodeURIComponent(p.id)}">
         <div class="p-card__img"><img src="${esc(img)}" alt="${esc(p.name || "商品画像")}" loading="lazy">
           <span class="p-card__sold"${sold ? "" : " hidden"}>SOLD</span></div>
         <div class="p-card__body">
           <p class="p-card__brand">${esc(p.brand || "no brand")}</p>
           <p class="p-card__name">${esc(p.name || "")}</p>
-          <p class="p-card__meta"><span class="p-card__size">${p.size ? `size ${esc(shortSize(p.size))}` : ""}</span><span class="p-card__price">${yen(p.price)}</span></p>
+          <p class="p-card__meta"><span class="p-card__size">${p.size ? esc(shortSize(p.size)) : ""}</span><span class="p-card__price">${yen(p.price)}</span></p>
         </div>
       </a>`;
     }
@@ -233,15 +178,12 @@
     function postCardHTML(b) {
       const cover = b.coverImage
         ? `<img src="${esc(b.coverImage)}" alt="" loading="lazy">`
-        : `<span class="home-post__ph" aria-hidden="true">GRIT<small>Journal</small></span>`;
+        : `<span class="home-post__ph" aria-hidden="true">Grit.</span>`;
       return `
-      <a class="home-post" href="blog-post.html?id=${encodeURIComponent(b.id)}">
+      <a class="home-post" href="${BASE}blog-post.html?id=${encodeURIComponent(b.id)}">
         <div class="home-post__img">${cover}</div>
-        <div class="home-post__body">
-          <p class="home-post__date">${esc(fmtDate(b.createdAt))}</p>
-          <h3 class="home-post__title">${esc(b.title || "")}</h3>
-          <span class="home-post__more">Read more<span aria-hidden="true"> →</span></span>
-        </div>
+        <p class="home-post__title">${esc(b.title || "")}</p>
+        <p class="home-post__date">${esc(fmtDate(b.createdAt))}</p>
       </a>`;
     }
 
@@ -251,9 +193,9 @@
         const items = await getLatestProducts(4);
         grid.innerHTML = items.length
           ? items.map(productCardHTML).join("")
-          : '<p class="empty-note span-all">アイテムは準備中です。<br>入荷を楽しみにお待ちください。</p>';
+          : '<p class="empty-note span-all">アイテムは準備中です。</p>';
       } catch {
-        grid.innerHTML = '<p class="empty-note span-all">読み込みに失敗しました。<br>時間をおいて再読み込みしてください。</p>';
+        grid.innerHTML = '<p class="empty-note span-all">読み込みに失敗しました。</p>';
       }
       grid.removeAttribute("aria-busy");
       window.dispatchEvent(new Event("grit:rendered"));
@@ -265,9 +207,9 @@
         const posts = (await getPosts()).slice(0, 3);
         list.innerHTML = posts.length
           ? posts.map(postCardHTML).join("")
-          : '<p class="empty-note span-all">記事は準備中です。<br>はじめての投稿をお待ちください。</p>';
+          : '<p class="empty-note span-all">記事は準備中です。</p>';
       } catch {
-        list.innerHTML = '<p class="empty-note span-all">読み込みに失敗しました。<br>時間をおいて再読み込みしてください。</p>';
+        list.innerHTML = '<p class="empty-note span-all">読み込みに失敗しました。</p>';
       }
       list.removeAttribute("aria-busy");
       window.dispatchEvent(new Event("grit:rendered"));

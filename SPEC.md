@@ -99,68 +99,49 @@ Grit/
 
 ## 3. デザインシステム(base.css 抜粋リファレンス)
 
-### パレット(CSS変数、:rootに定義済み)
-トーンは「夜の帳場」。白っぽい色・明るい色は使わない。ヘッダーは全ページ濃紺で統一。
+**方向性: 白を基調にしたミニマル。ギャラリーのように服と写真を主役にする。**
+(2026年7月、クライアント要望により旧「ヴィンテージ・アメカジ」から全面変更)
 
+- 面は白。**アクセントカラーを持たない**(無彩色のみ)
+- 線は1pxのヘアラインだけ。枠・影・テクスチャ・破線は使わない
+- 余白を大きく取る。要素を詰めない
+- **写真に色補正をかけない**(暗幕・フィルタ禁止)。写真をそのまま見せる
+
+### パレット(CSS変数)
 | 変数 | 値 | 用途 |
 |---|---|---|
-| `--indigo-950` | #0c1420 | 最濃紺(ヘッダー・フッター・暗転セクション) |
-| `--indigo-900` | #131e31 | 濃紺 |
-| `--indigo-700` | #1f3050 | デニム中間 |
-| `--indigo-500` | #33507a | ウォッシュデニム |
-| `--indigo-300` | #7e91a9 | ライトウォッシュ(暗地の補助文字) |
-| `--kinari` | #eae1c8 | 古紙(ベース背景。白に寄せない) |
-| `--kinari-dark` | #d9cdab | 古紙影 |
-| `--paper` | #f0e9d6 | カード背景 |
-| `--thread` | #9c7b49 | ステッチ糸(枯れた金茶。明るいオレンジは使わない) |
-| `--redtab` | #78302a | 赤タブ・アクセント(焦がした弁柄) |
-| `--leather` | #7d5732 | レザーパッチ茶 |
-| `--ink` | #20242b | 本文文字色 |
+| `--bg` | #ffffff | 基本の面 |
+| `--bg-soft` | #f7f7f6 | セクションを切り替えるわずかな灰 |
+| `--line` | #e6e6e3 | ヘアライン |
+| `--line-strong` | #cfcfca | 少し強い線 |
+| `--ink` | #111111 | 見出し・本文 |
+| `--ink-mid` | #6a6a68 | 補助テキスト |
+| `--ink-soft` | #9a9a97 | キャプション・日付 |
+| `--sold` | #b0342a | **SOLDの判別にだけ**色を許可 |
 
-### フォント(変数定義済み)
-- `--font-display`: 'Libre Caslon Text'(英字ラベル・ボタン・価格。古い活版の商標風セリフ)
-- `--font-display-big`: 'Libre Caslon Display'(特大見出し専用。weight 400 のまま使う)
-- `--font-serif-jp`: 'Shippori Mincho'(和文見出し)
-- `--font-body`: 'Zen Kaku Gothic New'(本文)
-- 注意: Caslonは400/700のみ。中間ウェイト指定は400/700に丸められる前提でよい。
+### フォント
+- `--font-display`: 'Poppins'(英字見出し・価格・ラベル)
+- `--font-body`: 'Noto Sans JP'(和文・本文)。和文は大きくせず、字間を広めに静かに置く
 
-### 主要コンポーネントクラス(base.cssに実装済み。**再定義せず使う**)
-- `.container` — max-width 1160px、左右パディング
-- `.btn` / `.btn--red` / `.btn--ghost` / `.btn--lg` — ボタン(内側にステッチ風破線)
-- `.stitch-box` — 生成りカード+二重ステッチ枠(レザーパッチ風)
-- `.red-tab` — 小さな赤タブ(GRITの文字入り)。`<span class="red-tab">GRIT</span>`
-- `.selvedge` — セルビッジ風区切り線(生成り地に赤耳ライン)。`<div class="selvedge" aria-hidden="true"></div>`
-- `.section-head` — セクション見出しブロック。中身: `.section-head__en`(英字大見出し) + `.section-head__ja`(和文小見出し)
-- `.p-card` — 商品カード一式(下記マークアップ厳守):
-  ```html
-  <a class="p-card" href="/shop/product.html?id=XXX">
-    <div class="p-card__img"><img src="..." alt="商品名" loading="lazy">
-      <span class="p-card__sold" hidden>SOLD</span></div>
-    <div class="p-card__body">
-      <p class="p-card__brand">ブランド名</p>
-      <p class="p-card__name">商品名</p>
-      <p class="p-card__meta"><span class="p-card__size">size M</span><span class="p-card__price">¥12,800</span></p>
-    </div>
-  </a>
-  ```
-  SOLD時は `p-card--sold` をルートに付け、`hidden` を外す。
-- `.tag` — カテゴリチップ。`.tag--active` で選択状態
-- `.badge-sold` — SOLDスタンプ(赤・傾き)
-- `.bg-denim` / `.denim-surface` — 実物のデニム生地写真(`/assets/denim.jpg|.webp`)を継ぎ目なしでタイル。
-  `background-blend-mode: multiply` + 染め色で濃さを調整する(染め色を暗くするほど濃紺になる)。
-  織り目が見えるよう `background-size: 820px` を基準にする。小さくすると布に見えないので下げない。
-  SHOPのヒーローとHPのスウォッチは縫い目入りの `/assets/denim-seam.jpg|.webp` を使う。
-  素材はPoly HavenのCC0。詳細は `public/assets/CREDITS.md`
-- `.bg-paper` — 生成り紙背景(paper.svg)
-- `.form-field` — ラベル+入力のブロック(admin用):`<label class="form-field"><span class="form-field__label">名前</span><input ...></label>`
-- input/textarea/select は base.css でスタイル済み(生成り地・ステッチ枠)
+### レイアウト変数
+`--gutter`(左右余白) / `--sec-pad`(セクション上下余白) / `--header-h`
 
-### デザインの気持ち
-- 余白はたっぷり。英字見出しはCaslon大文字を大きく(clampで responsive)、和文はShippori Minchoで品よく。方向性は「古い活版の商標ラベル」。渋く、ポップにしない。
-- 装飾は「縫製」由来のみ: 破線ステッチ、赤タブ、セルビッジ線、レザーパッチ枠。ゴテゴテさせない。
-- EC(デニム背景)上のカードは生成り(--paper)で浮かせ、コントラスト確保。デニム背景上の文字は生成り色。
-- ホバー: カードはわずかに浮く+影。リンクはthread色の下線ステッチ。
-- モバイルファースト。ブレークポイント: 640px / 960px。
+### 主要クラス(base.cssに実装済み。再定義しない)
+`.container` / `.container--narrow` / `.section` / `.bg-soft` /
+`.section-head__en` `.section-head__ja` / **`.link-arrow`(主役の導線。矢印つき下線リンク)** /
+`.btn`(黒塗り。購入導線など最小限) / `.stitch-box`(白い面+ヘアライン) /
+`.tag` `.tag--active` `.tag--dark` / `.badge-sold` / `.grid-products` `.p-card`(枠なし) /
+`.form-field` / `.empty-note` / `.skeleton` / `.toast` / `[data-reveal]`
+
+`.selvedge` `.red-tab` は旧デザインの名残で、base.css で非表示にしてある。
+
+### サイト構成(クライアント合意済み)
+ナビ: About / Shop / Journal / Access + Online Store。ブログの呼称は **Journal**。
+ブランド表記は **Grit.**(末尾のピリオドまで含む)。
+
+### 店舗情報(実データ)
+〒063-0812 北海道札幌市西区琴似2条2丁目1-3 テーオービル 2F / Tel 080-6094-4227
+営業 13:00–20:00 / 月曜定休
 
 ## 4. データモデル(Firestore)
 

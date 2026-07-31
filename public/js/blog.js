@@ -1,5 +1,5 @@
 // ============================================================
-// GRIT ブログ (blog.js)
+// GRIT Journal (blog.js)
 // /blog.html(一覧)と /blog-post.html(記事)を1ファイルで処理。
 // location.pathname で分岐する。
 // ============================================================
@@ -11,15 +11,9 @@ import { esc, nl2br, fmtDate, BASE } from "./common.js";
 
 const NAV_HTML = `
   <nav class="post__nav" aria-label="記事下ナビゲーション">
-    <a class="btn btn--ghost" href="${BASE}blog.html">← ブログ一覧へ</a>
-    <a class="btn btn--red" href="${BASE}shop/">SHOPを見る</a>
+    <a class="link-arrow" href="${BASE}blog.html">← Journal 一覧</a>
+    <a class="link-arrow" href="${BASE}shop/">Shop を見る</a>
   </nav>`;
-
-/** 本文冒頭の抜粋(改行・連続空白を潰して n 字+…) */
-function excerpt(body, n = 80) {
-  const t = String(body ?? "").replace(/\s+/g, " ").trim();
-  return t.length > n ? `${t.slice(0, n)}…` : t;
-}
 
 function emptyNoteHTML(en, jaHTML) {
   // en / jaHTML はこのファイル内の固定文言のみ(ユーザー由来テキストは渡さない)
@@ -35,20 +29,16 @@ function emptyNoteHTML(en, jaHTML) {
    ============================================================ */
 
 function cardHTML(p) {
+  // カバー画像がなければ、薄いグレーの面に小さく Grit. と置くだけにする
   const cover = p.coverImage
     ? `<img src="${esc(p.coverImage)}" alt="${esc(p.title)}" loading="lazy">`
-    : `<div class="b-card__dummy bg-denim" aria-hidden="true">
-         <span class="b-card__dummy-logo">GRIT</span>
-         <span class="b-card__dummy-sub">Vintage &amp; Used</span>
-       </div>`;
+    : `<span class="b-card__ph" aria-hidden="true">Grit.</span>`;
   return `
   <a class="b-card" href="${BASE}blog-post.html?id=${encodeURIComponent(p.id)}">
     <div class="b-card__img">${cover}</div>
     <div class="b-card__body">
-      <p class="b-card__date">${esc(fmtDate(p.createdAt))}</p>
       <h2 class="b-card__title">${esc(p.title)}</h2>
-      <p class="b-card__excerpt">${esc(excerpt(p.body))}</p>
-      <span class="b-card__more">Read More</span>
+      <p class="b-card__date">${esc(fmtDate(p.createdAt))}</p>
     </div>
   </a>`;
 }
@@ -96,14 +86,13 @@ function postHTML(p) {
     : "";
   return `
     <header class="post__head">
-      <p class="post__eyebrow"><span class="red-tab">GRIT</span><span>Blog</span></p>
+      <p class="post__eyebrow">Journal</p>
       <h1 class="post__title">${esc(p.title)}</h1>
       <p class="post__date">${esc(fmtDate(p.createdAt))}</p>
     </header>
     ${cover}
     <div class="post__body">${nl2br(esc(p.body))}</div>
     <footer class="post__foot">
-      <div class="selvedge" aria-hidden="true"></div>
       ${NAV_HTML}
     </footer>`;
 }
@@ -141,13 +130,14 @@ async function initPost() {
   root.removeAttribute("aria-busy");
 
   if (failed || !post || post.published === false) {
-    document.title = "記事が見つかりません | GRIT";
+    document.title = "記事が見つかりません | Grit.";
     root.innerHTML = missingHTML(failed);
     return;
   }
 
-  document.title = `${post.title} | GRIT`;
+  document.title = `${post.title} | Grit.`;
   root.innerHTML = postHTML(post);
+  window.dispatchEvent(new Event("grit:rendered"));
 }
 
 /* ---------- 分岐 ---------- */

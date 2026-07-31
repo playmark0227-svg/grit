@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>管理ページ | GRIT</title>
-  <meta name="description" content="GRIT 管理ページ。商品とブログ記事の登録・編集を行う店舗スタッフ専用画面です。">
+  <title>管理ページ | Grit.</title>
+  <meta name="description" content="Grit. 管理ページ。商品とブログ記事の登録・編集を行う店舗スタッフ専用画面です。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Shippori+Mincho:wght@500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/admin.css">
   <meta name="robots" content="noindex">
@@ -17,11 +17,10 @@
   <div class="demo-banner" id="demo-banner" role="status" hidden>デモモード: 保存はこの画面内だけの仮保存です</div>
 
   <header class="admin-header">
-    <div class="selvedge-strip" aria-hidden="true"></div>
     <div class="admin-header__bar container">
-      <a class="admin-logo" href="./" aria-label="GRIT 管理ページ">
-        <span class="admin-logo__text">GRIT</span>
-        <span class="red-tab">Admin</span>
+      <a class="admin-logo" href="./" aria-label="Grit. 管理ページ">
+        <span class="admin-logo__text">Grit.</span>
+        <span class="admin-logo__tag">Admin</span>
       </a>
       <div class="admin-header__user" id="admin-user" hidden>
         <span class="admin-header__email" id="admin-user-email"></span>
@@ -34,15 +33,15 @@
 
     <!-- 認証確認中 -->
     <section class="auth-view" id="view-loading" aria-label="読み込み中">
-      <p class="auth-loading"><span class="stitch-spinner" aria-hidden="true"></span>認証状態を確認しています…</p>
+      <p class="auth-loading"><span class="auth-spinner" aria-hidden="true"></span>認証状態を確認しています…</p>
     </section>
 
     <!-- 未ログイン -->
     <section class="auth-view" id="view-login" aria-label="ログイン" hidden>
       <div class="stitch-box auth-card">
-        <p class="auth-card__logo">GRIT <span class="red-tab">Admin</span></p>
+        <p class="auth-card__logo">Grit.<span class="auth-card__tag">Admin</span></p>
         <p class="auth-card__ja" id="login-subtitle">管理ページ — スタッフ専用</p>
-        <button type="button" class="btn btn--red btn--lg btn--block" id="btn-login">Googleでログイン</button>
+        <button type="button" class="btn btn--lg btn--block" id="btn-login">Googleでログイン</button>
         <p class="auth-card__demo" id="login-demo-note" hidden>
           いまは<strong>デモモード</strong>です。Googleアカウントは不要で、
           誰でもそのまま管理画面を試せます。<br>
@@ -56,7 +55,7 @@
     <!-- ログイン済み・権限なし -->
     <section class="auth-view" id="view-denied" aria-label="権限がありません" hidden>
       <div class="stitch-box auth-card">
-        <p class="auth-card__logo">GRIT <span class="red-tab">Admin</span></p>
+        <p class="auth-card__logo">Grit.<span class="auth-card__tag">Admin</span></p>
         <h1 class="auth-card__title">権限がありません</h1>
         <p class="auth-card__note">このアカウント(<span id="denied-email"></span>)には管理ページへのアクセス権限がありません。許可されたGoogleアカウントでログインし直してください。</p>
         <button type="button" class="btn btn--ghost btn--block" id="btn-denied-signout">サインアウト</button>
@@ -78,7 +77,7 @@
 
         <div class="panel-head">
           <p class="panel-count" id="product-count"></p>
-          <button type="button" class="btn btn--red" id="btn-new-product">+ 新規商品</button>
+          <button type="button" class="btn" id="btn-new-product">+ 新規商品</button>
         </div>
 
         <form class="admin-form stitch-box" id="product-form" novalidate hidden>
@@ -139,7 +138,7 @@
 
           <div class="admin-form__actions">
             <button type="button" class="btn btn--ghost" id="p-cancel">キャンセル</button>
-            <button type="submit" class="btn btn--red" id="p-submit">保存する</button>
+            <button type="submit" class="btn" id="p-submit">保存する</button>
           </div>
         </form>
 
@@ -152,7 +151,7 @@
 
         <div class="panel-head">
           <p class="panel-count" id="post-count"></p>
-          <button type="button" class="btn btn--red" id="btn-new-post">+ 新規記事</button>
+          <button type="button" class="btn" id="btn-new-post">+ 新規記事</button>
         </div>
 
         <form class="admin-form stitch-box" id="post-form" novalidate hidden>
@@ -191,7 +190,7 @@
 
           <div class="admin-form__actions">
             <button type="button" class="btn btn--ghost" id="b-cancel">キャンセル</button>
-            <button type="submit" class="btn btn--red" id="b-submit">保存する</button>
+            <button type="submit" class="btn" id="b-submit">保存する</button>
           </div>
         </form>
 
@@ -218,7 +217,7 @@
 
   <footer class="admin-footer">
     <div class="container">
-      <p>GRIT ADMIN — <a href="../">サイトを見る</a></p>
+      <p>Grit. Admin — <a href="../">サイトを見る</a></p>
     </div>
   </footer>
 
