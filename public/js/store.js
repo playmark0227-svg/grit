@@ -264,6 +264,9 @@ export async function setOrderFulfillment(id, fulfillment) {
 /* ---------- 認証(管理ページ用・Googleログイン) ---------- */
 
 export function isAdmin(user) {
+  // デモモードは誰でも触れるお試し画面(保存はメモリ内だけ)。
+  // 本番では必ず ADMIN_EMAILS の照合を通す。
+  if (DEMO_MODE) return !!user;
   return !!user && ADMIN_EMAILS.includes(user.email || "");
 }
 
@@ -290,7 +293,8 @@ export function watchAuth(cb) {
 
 export async function signInWithGoogle() {
   if (DEMO_MODE) {
-    const u = { displayName: "デモ管理者", email: ADMIN_EMAILS[0], demo: true };
+    // 実在のメールアドレスは使わない(プレビューは誰でも見られるため)
+    const u = { displayName: "デモ管理者", email: "demo@grit.example", demo: true };
     setDemoUser(u);
     return u;
   }

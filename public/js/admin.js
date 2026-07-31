@@ -99,7 +99,15 @@ function appendThumb(container, src, label, onDelete) {
    認証状態でビューを切り替え
    ============================================================ */
 
-if (DEMO_MODE) $("demo-banner").hidden = false;
+// デモモードでは Google 認証を使わない。
+// 「Googleでログイン」のままだと本物の認証に見えて押しづらいので、
+// 誰でも試せるデモ用の入口だと分かる表示に差し替える。
+if (DEMO_MODE) {
+  $("demo-banner").hidden = false;
+  $("btn-login").textContent = "デモとして管理画面に入る";
+  $("login-subtitle").textContent = "管理ページ — デモ(お試し)";
+  $("login-demo-note").hidden = false;
+}
 
 const VIEWS = ["loading", "login", "denied", "admin"];
 function showView(name) {
@@ -142,7 +150,7 @@ watchAuth((user) => {
 $("btn-login").addEventListener("click", async () => {
   const btn = $("btn-login");
   hideError($("login-error"));
-  setBusy(btn, true, "ログイン中…");
+  setBusy(btn, true, DEMO_MODE ? "準備中…" : "ログイン中…");
   try {
     await signInWithGoogle();
   } catch (e) {

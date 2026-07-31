@@ -154,6 +154,19 @@
 .auth-card__back:hover { color: var(--redtab); }
 .auth-card .form-error { margin-top: 16px; text-align: left; }
 
+/* デモモードのときだけ出る説明 */
+.auth-card__demo {
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: rgb(33 36 42 / .05);
+  border-left: 2px solid var(--thread);
+  font-size: .8rem;
+  line-height: 1.9;
+  color: var(--muted);
+  text-align: left;
+}
+.auth-card__demo strong { color: var(--indigo-900); font-weight: 700; }
+
 /* ---------- タブ ---------- */
 .admin-tabs {
   display: flex;

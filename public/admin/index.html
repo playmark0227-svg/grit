@@ -41,8 +41,13 @@
     <section class="auth-view" id="view-login" aria-label="ログイン" hidden>
       <div class="stitch-box auth-card">
         <p class="auth-card__logo">GRIT <span class="red-tab">Admin</span></p>
-        <p class="auth-card__ja">管理ページ — スタッフ専用</p>
+        <p class="auth-card__ja" id="login-subtitle">管理ページ — スタッフ専用</p>
         <button type="button" class="btn btn--red btn--lg btn--block" id="btn-login">Googleでログイン</button>
+        <p class="auth-card__demo" id="login-demo-note" hidden>
+          いまは<strong>デモモード</strong>です。Googleアカウントは不要で、
+          誰でもそのまま管理画面を試せます。<br>
+          登録した内容はこの画面を閉じると消えます。
+        </p>
         <p class="form-error" id="login-error" hidden></p>
         <a class="auth-card__back" href="../">← サイトトップへ戻る</a>
       </div>
