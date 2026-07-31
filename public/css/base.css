@@ -579,3 +579,41 @@ textarea { resize: vertical; min-height: 8em; }
   color: var(--indigo-300);
   text-align: center;
 }
+
+/* ============================================================
+   モーション(motion.js と対)
+   方針: ゆっくり、控えめ。動きで渋さを壊さない。
+   OS設定で視差を減らしている人には一切動かさない。
+   ============================================================ */
+
+/* --- スクロールで現れる --- */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1);
+  will-change: opacity, transform;
+}
+[data-reveal].is-in { opacity: 1; transform: none; }
+
+/* 子を少しずつ遅らせる(グリッド用)。遅延は motion.js が付ける。
+   「隠す側」を :not(.is-in) にして、出現後は打ち消し合いが起きないようにする。 */
+[data-reveal="stagger"] { opacity: 1; transform: none; }
+[data-reveal="stagger"] > * {
+  transition: opacity .8s cubic-bezier(.22,.61,.36,1), transform .8s cubic-bezier(.22,.61,.36,1);
+}
+[data-reveal="stagger"]:not(.is-in) > * {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* --- 画像は読めてから静かに出す --- */
+img { opacity: 1; }
+img.img-ready { animation: img-in .7s ease both; }
+@keyframes img-in { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal], [data-reveal="stagger"] > * { opacity: 1 !important; transform: none !important; transition: none !important; }
+  img.img-ready { animation: none; }
+  .lookbook__track { animation: none !important; }
+  .hero__img { animation: none !important; }
+}

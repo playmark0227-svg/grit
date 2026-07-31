@@ -55,6 +55,7 @@ function cardHTML(p) {
 
 async function initList() {
   const grid = document.getElementById("blog-grid");
+  if (grid) grid.setAttribute("data-reveal", "stagger");
   if (!grid) return;
 
   let posts = [];
@@ -82,6 +83,7 @@ async function initList() {
     return;
   }
   grid.innerHTML = posts.map(cardHTML).join("");
+  window.dispatchEvent(new Event("grit:rendered"));
 }
 
 /* ============================================================

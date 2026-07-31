@@ -17,34 +17,32 @@
 
   <main>
     <!-- ================= HERO ================= -->
-    <section class="hero">
+    <!-- 背景写真は差し替え前提のダミー(店舗を撮影したら
+         public/assets/demo/hero-store.jpg を同名で置き換えるだけ) -->
+    <section class="hero hero--photo">
+      <div class="hero__media" aria-hidden="true" data-parallax="0.14">
+        <img class="hero__img" src="assets/demo/hero-store.jpg" alt="" fetchpriority="high" data-no-fade>
+      </div>
       <div class="container hero__inner">
         <div class="hero__text">
-        <p class="hero__eyebrow">Vintage &amp; Used Clothing</p>
-        <h1 class="hero__title">
-          <span class="hero__grit">GRIT<span class="red-tab hero__tab" aria-hidden="true">Vintage</span></span>
-        </h1>
-        <p class="hero__catch">一点物と、暮らす。</p>
-        <p class="hero__lead">時を重ねた一着には、前の持ち主の物語が縫い込まれている。<br class="br-pc">デニム、ミリタリー、ワーク。目と手でたしかめた古着だけを、一点ずつ。<br class="br-pc">出会いは、いつも一度きり。</p>
-        <div class="hero__cta">
-          <a class="btn btn--red btn--lg" href="shop/">SHOPを見る</a>
-          <a class="btn btn--ghost btn--lg" href="#about">GRITについて</a>
-        </div>
+          <p class="hero__eyebrow">Vintage &amp; Used Clothing</p>
+          <h1 class="hero__title">
+            <span class="hero__grit">GRIT<span class="red-tab hero__tab" aria-hidden="true">Vintage</span></span>
+          </h1>
+          <p class="hero__catch">一点物と、暮らす。</p>
+          <p class="hero__lead">時を重ねた一着には、前の持ち主の物語が縫い込まれている。<br class="br-pc">デニム、ミリタリー、ワーク。目と手でたしかめた古着だけを、一点ずつ。<br class="br-pc">出会いは、いつも一度きり。</p>
+          <div class="hero__cta">
+            <a class="btn btn--red btn--lg" href="shop/">SHOPを見る</a>
+            <a class="btn btn--cream btn--lg" href="#about">GRITについて</a>
+          </div>
         </div>
 
-        <!-- デニムのスウォッチ + 下げ札(画像なしでCSSのみ・装飾) -->
-        <div class="hero__visual" aria-hidden="true">
-          <div class="hero__swatch">
-            <span class="hero__swatch-selvedge"></span>
-            <span class="hero__swatch-label">Indigo<br>Selvedge</span>
-            
-          </div>
-          <div class="hero__hangtag">
-            <span class="hero__hangtag-hole"></span>
-            <span class="hero__hangtag-en">One-off</span>
-            <span class="hero__hangtag-ja">一点物</span>
-            <span class="hero__hangtag-note">No.____</span>
-          </div>
+        <!-- 下げ札(写真の上に重ねる) -->
+        <div class="hero__hangtag" aria-hidden="true">
+          <span class="hero__hangtag-hole"></span>
+          <span class="hero__hangtag-en">One-off</span>
+          <span class="hero__hangtag-ja">一点物</span>
+          <span class="hero__hangtag-note">No.____</span>
         </div>
       </div>
       <span class="hero__side" aria-hidden="true">One-off Vintage — Worn &amp; Loved</span>
@@ -56,16 +54,22 @@
     <!-- ================= ABOUT ================= -->
     <section id="about" class="home-sec home-about">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head" data-reveal>
           <h2 class="section-head__en">About</h2>
           <p class="section-head__ja">グリットについて</p>
         </div>
-        <div class="home-about__body">
-          <p>GRITは、アメリカの古着・ヴィンテージを中心に扱う古着屋です。デニム、ミリタリー、ワーク、スウェット——長い時間を生き抜いてきた本物だけを、一点ずつ手にとって選んでいます。</p>
-          <p>大量生産の服にはない、揺らぎと個性。前の持ち主が刻んだ色落ちやアタリ、小さなリペアの跡は、その一着にしかない模様です。わたしたちは、その表情に惚れ込んだものだけを仕入れています。</p>
-          <p>袖を通したその日から、今度はあなたの時間が縫い足されていく。GRITは、そんな「育てる服」との出会いの場でありたいと考えています。</p>
+        <div class="home-about__lead">
+          <div class="home-about__body" data-reveal>
+            <p>GRITは、アメリカの古着・ヴィンテージを中心に扱う古着屋です。デニム、ミリタリー、ワーク、スウェット——長い時間を生き抜いてきた本物だけを、一点ずつ手にとって選んでいます。</p>
+            <p>大量生産の服にはない、揺らぎと個性。前の持ち主が刻んだ色落ちやアタリ、小さなリペアの跡は、その一着にしかない模様です。わたしたちは、その表情に惚れ込んだものだけを仕入れています。</p>
+            <p>袖を通したその日から、今度はあなたの時間が縫い足されていく。GRITは、そんな「育てる服」との出会いの場でありたいと考えています。</p>
+          </div>
+          <figure class="home-about__photo" data-reveal>
+            <img src="assets/demo/about-rack.jpg" alt="店内に並ぶ古着" loading="lazy">
+            <figcaption>店内の様子(写真は準備中のイメージです)</figcaption>
+          </figure>
         </div>
-        <div class="home-about__grid">
+        <div class="home-about__grid" data-reveal="stagger">
           <div class="stitch-box about-card">
             <p class="about-card__num"><span>01</span><span>One-off</span></p>
             <h3 class="about-card__title">一点物だけ。</h3>
@@ -88,11 +92,11 @@
     <!-- ================= NEW ARRIVALS ================= -->
     <section id="new-arrivals" class="home-sec home-arrivals">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head" data-reveal>
           <h2 class="section-head__en">New Arrivals</h2>
           <p class="section-head__ja">新着アイテム</p>
         </div>
-        <div class="grid-products" id="arrivals-grid" aria-busy="true">
+        <div class="grid-products" id="arrivals-grid" data-reveal="stagger" aria-busy="true">
           <div class="home-skel" aria-hidden="true"></div>
           <div class="home-skel" aria-hidden="true"></div>
           <div class="home-skel" aria-hidden="true"></div>
@@ -107,11 +111,11 @@
     <!-- ================= BLOG ================= -->
     <section id="blog" class="home-sec home-blog">
       <div class="container">
-        <div class="section-head">
+        <div class="section-head" data-reveal>
           <h2 class="section-head__en">Blog</h2>
           <p class="section-head__ja">入荷情報と読みもの</p>
         </div>
-        <div class="home-posts" id="blog-list" aria-busy="true">
+        <div class="home-posts" id="blog-list" data-reveal="stagger" aria-busy="true">
           <div class="home-skel home-skel--post" aria-hidden="true"></div>
           <div class="home-skel home-skel--post" aria-hidden="true"></div>
           <div class="home-skel home-skel--post" aria-hidden="true"></div>
@@ -122,16 +126,43 @@
       </div>
     </section>
 
-    <div class="selvedge" aria-hidden="true"></div>
+    <!-- ================= LOOKBOOK(流れる写真の帯) ================= -->
+    <section class="lookbook" aria-label="店内とアイテムの写真">
+      <div class="lookbook__track" aria-hidden="true">
+        <div class="lookbook__set">
+          <img src="assets/demo/detail-hats.jpg" alt="" loading="lazy">
+          <img src="assets/demo/p1-denim-jacket.jpg" alt="" loading="lazy">
+          <img src="assets/demo/b1-store.jpg" alt="" loading="lazy">
+          <img src="assets/demo/p8-military.jpg" alt="" loading="lazy">
+          <img src="assets/demo/detail-goods.jpg" alt="" loading="lazy">
+          <img src="assets/demo/p4-jeans.jpg" alt="" loading="lazy">
+          <img src="assets/demo/about-rack.jpg" alt="" loading="lazy">
+          <img src="assets/demo/p6-bandana.jpg" alt="" loading="lazy">
+        </div>
+        <div class="lookbook__set">
+          <img src="assets/demo/detail-hats.jpg" alt="" loading="lazy">
+          <img src="assets/demo/p1-denim-jacket.jpg" alt="" loading="lazy">
+          <img src="assets/demo/b1-store.jpg" alt="" loading="lazy">
+          <img src="assets/demo/p8-military.jpg" alt="" loading="lazy">
+          <img src="assets/demo/detail-goods.jpg" alt="" loading="lazy">
+          <img src="assets/demo/p4-jeans.jpg" alt="" loading="lazy">
+          <img src="assets/demo/about-rack.jpg" alt="" loading="lazy">
+          <img src="assets/demo/p6-bandana.jpg" alt="" loading="lazy">
+        </div>
+      </div>
+    </section>
 
     <!-- ================= INFO ================= -->
     <section id="info" class="home-sec home-info">
+      <div class="home-info__media" aria-hidden="true" data-parallax="0.08">
+        <img src="assets/demo/store-front.jpg" alt="" loading="lazy" data-no-fade>
+      </div>
       <div class="container">
-        <div class="section-head section-head--light">
+        <div class="section-head section-head--light" data-reveal>
           <h2 class="section-head__en">Info</h2>
           <p class="section-head__ja">店舗情報</p>
         </div>
-        <div class="home-info__grid">
+        <div class="home-info__grid" data-reveal="stagger">
           <div class="stitch-box info-box">
             <h3 class="info-box__title">Store</h3>
             <dl class="info-dl">
@@ -225,6 +256,7 @@
         grid.innerHTML = '<p class="empty-note span-all">読み込みに失敗しました。<br>時間をおいて再読み込みしてください。</p>';
       }
       grid.removeAttribute("aria-busy");
+      window.dispatchEvent(new Event("grit:rendered"));
     }
 
     async function renderPosts() {
@@ -238,6 +270,7 @@
         list.innerHTML = '<p class="empty-note span-all">読み込みに失敗しました。<br>時間をおいて再読み込みしてください。</p>';
       }
       list.removeAttribute("aria-busy");
+      window.dispatchEvent(new Event("grit:rendered"));
     }
 
     renderArrivals();

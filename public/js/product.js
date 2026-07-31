@@ -134,6 +134,7 @@ function renderProduct(p) {
   }
 
   renderCta(p, available);
+  window.dispatchEvent(new Event("grit:rendered"));
 }
 
 /* ---------- 起動 ---------- */

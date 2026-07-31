@@ -100,6 +100,7 @@ function renderProducts() {
   }
 
   grid.innerHTML = items.map(cardHTML).join("");
+  window.dispatchEvent(new Event("grit:rendered"));
 }
 
 function cardHTML(p, index) {

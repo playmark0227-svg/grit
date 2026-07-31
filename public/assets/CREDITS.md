@@ -40,6 +40,10 @@
 | p7-belt.jpg | サドルレザーベルト(SOLD表示の見本) |
 | p8-military.jpg | 70s M-65 フィールドジャケット |
 | b1-store.jpg / b2-jeans-stack.jpg | ブログ記事のカバー画像 |
+| hero-store.jpg | **HPトップのヒーロー背景**(店内)。撮影したらここを差し替え |
+| store-front.jpg | HPのINFOセクション背景(店舗外観) |
+| about-rack.jpg | HPのABOUTセクションの店内写真 |
+| detail-hats.jpg / detail-goods.jpg | ルックブック(流れる写真の帯)用 |
 
 本番のFirebaseに商品を登録し始めたら、このフォルダごと削除してかまいません
 (デモモードのときだけ使われます)。
