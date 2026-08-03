@@ -25,9 +25,14 @@
              alt="Grit. の店内" fetchpriority="high" data-no-fade>
       </div>
       <div class="container hero__inner">
+        <p class="hero__eyebrow">札幌・琴似の古着屋<span aria-hidden="true"></span>Vintage &amp; Used Clothing</p>
         <h1 class="hero__title">Clean space,<br>curated chaos.</h1>
         <p class="hero__catch">良い服と、良い時間を。</p>
-        <a class="link-arrow hero__link" href="#about">About Grit.</a>
+        <div class="hero__actions">
+          <a class="btn" href="shop/">Online Shop</a>
+          <a class="btn btn--ghost" href="#access">Access</a>
+        </div>
+        <p class="hero__note">札幌市西区琴似2条2丁目 テーオービル 2F / 13:00 – 20:00(月曜定休)</p>
       </div>
     </section>
 
@@ -41,8 +46,9 @@
           <h2 class="section-head__en">About Grit.</h2>
           <div class="home-about__text">
             <p>Grit.は札幌・琴似にある古着屋です。</p>
-            <p>90〜00's を中心に、質感やサイズ、デザインに<br class="br-pc">こだわった古着をセレクトしています。</p>
-            <p>服を通して、日常が少し楽しくなるような<br class="br-pc">きっかけを届けられたら嬉しいです。</p>
+            <p>年代やブランドだけにとらわれず、質感・シルエット・サイズバランスを大切に、一着ずつセレクトしています。</p>
+            <p>流行だから選ぶのではなく、気づけば何度も手に取ってしまう。<br class="br-pc">そんな日常に自然と馴染む一着との出会いを届けたいと考えています。</p>
+            <p>服だけではなく、空間や時間も含めて楽しめる場所へ。<br class="br-pc">お気に入りの一着を見つけに、ぜひお立ち寄りください。</p>
           </div>
           <a class="link-arrow" href="shop/">View More</a>
         </div>
@@ -65,37 +71,56 @@
       </div>
     </section>
 
-    <!-- ================= JOURNAL / GALLERY ================= -->
-    <section class="section home-two">
-      <div class="container home-two__inner">
-        <div class="home-two__col">
-          <div class="home-row-head" data-reveal>
-            <h2 class="section-head__en">Journal</h2>
-            <a class="link-arrow link-arrow--sm" href="blog.html">View All</a>
-          </div>
-          <div class="home-posts" id="blog-list" data-reveal="stagger" aria-busy="true">
-            <div class="skeleton home-post__skel" aria-hidden="true"></div>
-            <div class="skeleton home-post__skel" aria-hidden="true"></div>
-            <div class="skeleton home-post__skel" aria-hidden="true"></div>
-          </div>
+    <!-- ================= JOURNAL ================= -->
+    <section class="section home-journal">
+      <div class="container">
+        <div class="home-row-head" data-reveal>
+          <h2 class="section-head__en">Journal</h2>
+          <a class="link-arrow link-arrow--sm" href="blog.html">View All</a>
         </div>
+        <div class="home-posts" id="blog-list" data-reveal="stagger" aria-busy="true">
+          <div class="skeleton home-post__skel" aria-hidden="true"></div>
+          <div class="skeleton home-post__skel" aria-hidden="true"></div>
+          <div class="skeleton home-post__skel" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
 
-        <div class="home-two__col">
-          <div class="home-row-head" data-reveal>
-            <h2 class="section-head__en">Gallery</h2>
-          </div>
-          <!-- SNSアカウント開設後、ここをInstagramの埋め込みに差し替えられる -->
-          <div class="home-gallery" data-reveal="stagger">
-            <a class="home-gallery__item" href="shop/">
-              <img src="assets/demo/gallery-1.jpg" alt="" loading="lazy">
-            </a>
-            <a class="home-gallery__item" href="shop/">
-              <img src="assets/demo/gallery-2.jpg" alt="" loading="lazy">
-            </a>
-            <a class="home-gallery__item" href="shop/">
-              <img src="assets/demo/gallery-3.jpg" alt="" loading="lazy">
-            </a>
-          </div>
+    <!-- ================= GALLERY =================
+         店内・入口・試着室など、来店前に雰囲気が伝わる写真を並べる。
+         2階の店舗なので、入口(階段)の写真を最初に置いている。
+         撮影後は assets/demo/gallery-*.jpg を同名で差し替えるだけ -->
+    <section class="section home-gallery-sec bg-soft">
+      <div class="container">
+        <div class="home-row-head" data-reveal>
+          <h2 class="section-head__en">Gallery</h2>
+          <p class="home-gallery__lead">はじめての方も入りやすいよう、お店の様子を載せています。</p>
+        </div>
+        <div class="home-gallery" data-reveal="stagger">
+          <figure class="home-gallery__item">
+            <img src="assets/demo/gallery-entrance.jpg" alt="ビル2階へ上がる入口の階段" loading="lazy">
+            <figcaption>入口 — テーオービル 2F へ</figcaption>
+          </figure>
+          <figure class="home-gallery__item">
+            <img src="assets/demo/gallery-1.jpg" alt="店内の様子" loading="lazy">
+            <figcaption>店内</figcaption>
+          </figure>
+          <figure class="home-gallery__item">
+            <img src="assets/demo/gallery-fitting.jpg" alt="試着スペース" loading="lazy">
+            <figcaption>試着スペース</figcaption>
+          </figure>
+          <figure class="home-gallery__item">
+            <img src="assets/demo/gallery-2.jpg" alt="棚に並ぶアイテム" loading="lazy">
+            <figcaption>棚まわり</figcaption>
+          </figure>
+          <figure class="home-gallery__item">
+            <img src="assets/demo/gallery-3.jpg" alt="ラックに並ぶ古着" loading="lazy">
+            <figcaption>ラック</figcaption>
+          </figure>
+          <figure class="home-gallery__item">
+            <img src="assets/demo/about-rack.jpg" alt="店内のセレクト" loading="lazy">
+            <figcaption>セレクト</figcaption>
+          </figure>
         </div>
       </div>
     </section>
