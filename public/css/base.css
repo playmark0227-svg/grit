@@ -192,6 +192,23 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
 .cta:hover::before { transform: scaleX(1); }
 .cta:hover::after { width: 30px; right: 1.2em; }
 
+/* --- 視線誘導 ---
+   1) 矢印がときどき小さく前に出る(呼吸のような間隔で、常時は動かさない)
+   2) 主導線だけ、ゆっくり光が横切る
+   どちらも「見て」と言わない程度の強さに留める。触れている間は止める。 */
+@keyframes cta-arrow-nudge {
+  0%, 58%, 100% { transform: translateY(-50%) translateX(0); }
+  72%           { transform: translateY(-50%) translateX(7px); }
+  86%           { transform: translateY(-50%) translateX(0); }
+}
+.cta::after { animation: cta-arrow-nudge 3.6s ease-in-out infinite; }
+.cta:hover::after { animation-play-state: paused; }
+
+@keyframes cta-sheen {
+  0%, 62% { background-position: 175% 0; }
+  100%    { background-position: -75% 0; }
+}
+
 .cta__main {
   font-family: var(--font-display);
   font-size: .94rem;
@@ -206,10 +223,27 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
   opacity: .62;
 }
 
-/* 初期から黒で塗った版(主導線) */
-.cta--fill { background: var(--ink); color: #fff; }
+/* 初期から黒で塗った版(主導線)。
+   background は短縮形で書かない(下のグラデーションが消えるため) */
+.cta--fill {
+  background-color: var(--ink);
+  color: #fff;
+  /* ゆっくり光が横切る。6秒に一度、1秒弱だけ */
+  background-image: linear-gradient(105deg,
+    transparent 42%,
+    rgb(255 255 255 / .16) 50%,
+    transparent 58%);
+  background-size: 220% 100%;
+  background-repeat: no-repeat;
+  background-position: 175% 0;
+  animation: cta-sheen 6s ease-in-out infinite;
+}
 .cta--fill::before { background: #fff; }
-.cta--fill:hover { color: var(--ink); }
+.cta--fill:hover { color: var(--ink); animation-play-state: paused; }
+
+@media (prefers-reduced-motion: reduce) {
+  .cta::after, .cta--fill { animation: none; }
+}
 
 @media (max-width: 480px) {
   .cta { min-width: 0; width: 100%; }
