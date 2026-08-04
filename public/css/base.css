@@ -142,6 +142,78 @@ button { font: inherit; color: inherit; background: none; border: none; padding:
 .btn--red, .btn--cream { background: var(--ink); color: #fff; border-color: var(--ink); }
 .btn--red:hover, .btn--cream:hover { background: #333; border-color: #333; }
 .btn--lg { padding: 1.4em 3em; font-size: .86rem; }
+
+/* ---------- CTA(押したくなる導線) ----------
+   ミニマルさを保ったまま存在感を出すため、
+   ・面ではなく「線の箱」で構え、hoverで黒が左から満ちる
+   ・行き先の理由を小さく添える(全国発送承ります など)
+   ・矢印が右へ伸びる
+   派手な色は使わない。動きと余白で誘導する。 */
+.cta {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .35em;
+  min-width: 244px;
+  padding: 1.15em 3.6em 1.15em 1.6em;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition: color .45s cubic-bezier(.22,.61,.36,1);
+}
+/* 左から満ちる黒 */
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--ink);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .45s cubic-bezier(.22,.61,.36,1);
+}
+/* 矢印 */
+.cta::after {
+  content: "";
+  position: absolute;
+  right: 1.5em;
+  top: 50%;
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  transform: translateY(-50%);
+  transition: width .45s cubic-bezier(.22,.61,.36,1), right .45s cubic-bezier(.22,.61,.36,1);
+}
+.cta:hover { color: #fff; }
+.cta:hover::before { transform: scaleX(1); }
+.cta:hover::after { width: 30px; right: 1.2em; }
+
+.cta__main {
+  font-family: var(--font-display);
+  font-size: .94rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  line-height: 1.2;
+}
+.cta__sub {
+  font-size: .68rem;
+  letter-spacing: .08em;
+  line-height: 1.2;
+  opacity: .62;
+}
+
+/* 初期から黒で塗った版(主導線) */
+.cta--fill { background: var(--ink); color: #fff; }
+.cta--fill::before { background: #fff; }
+.cta--fill:hover { color: var(--ink); }
+
+@media (max-width: 480px) {
+  .cta { min-width: 0; width: 100%; }
+}
 .btn--block { width: 100%; }
 .btn[disabled], .btn.is-disabled { opacity: .3; pointer-events: none; }
 
@@ -427,6 +499,20 @@ textarea { resize: vertical; min-height: 9em; line-height: 1.9; }
   transition: width .3s ease;
 }
 .header-shop:hover::after { width: 30px; }
+
+/* ヘッダーのアイコンリンク(Instagram など) */
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  color: var(--ink);
+  text-decoration: none;
+  opacity: .82;
+  transition: opacity .25s ease;
+}
+.icon-link:hover { opacity: 1; }
+.icon-link svg { width: 19px; height: 19px; }
 
 .cart-link {
   position: relative;

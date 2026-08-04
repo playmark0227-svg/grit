@@ -12,6 +12,11 @@ import "./motion.js";
    ローカル/Firebase では "/"、Pages では "/<リポジトリ名>/" になる。 */
 export const BASE = new URL("../", import.meta.url).pathname;
 
+/* InstagramのアカウントURL。決まったらここだけ書き換える
+   (ヘッダー・フッター・トップページの導線がまとめて切り替わる)
+   例: "https://www.instagram.com/grit_kotoni/" */
+export const INSTAGRAM_URL = "https://www.instagram.com/";
+
 /* ---------- utilities ---------- */
 
 export function esc(s) {
@@ -137,6 +142,9 @@ function headerHTML() {
         <a href="${BASE}#access" data-nav="access">Access</a>
       </nav>
       <div class="site-header__right">
+        <a class="icon-link" href="${INSTAGRAM_URL}" target="_blank" rel="noopener" aria-label="Instagramを見る">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="3.9"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
         <a class="cart-link" href="${BASE}shop/cart.html" aria-label="カートを見る">
           ${CART_SVG}
           <span class="cart-link__count" data-cart-count hidden>0</span>
@@ -169,6 +177,7 @@ function footerHTML() {
           <a href="${BASE}shop/">Shop</a>
           <a href="${BASE}blog.html">Journal</a>
           <a href="${BASE}#access">Access</a>
+          <a href="${INSTAGRAM_URL}" target="_blank" rel="noopener">Instagram</a>
         </nav>
       </div>
       <p class="site-footer__copy">&copy; ${y} Grit. All Rights Reserved.</p>

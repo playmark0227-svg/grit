@@ -85,13 +85,12 @@
   gap: 12px;
   margin-top: clamp(28px, 4.5vw, 44px);
 }
-.hero__actions .btn { min-width: 190px; }
-/* 写真の上に置くので、白背景を敷いて輪郭を保つ */
-.hero__actions .btn--ghost {
-  background: rgb(255 255 255 / .82);
-  border-color: var(--ink);
+/* 写真の上に置くので、塗っていない方は白地を敷いて輪郭を保つ */
+.hero__actions .cta:not(.cta--fill) {
+  background: rgb(255 255 255 / .86);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
 }
-.hero__actions .btn--ghost:hover { background: #fff; }
 
 .hero__note {
   margin-top: clamp(18px, 2.6vw, 26px);
@@ -228,6 +227,55 @@
   font-size: .74rem;
   letter-spacing: .08em;
   color: var(--ink-mid);
+}
+
+/* ---------------- INSTAGRAM(アカウントへの導線) ----------------
+   投稿の埋め込みはShopと内容が重なるため行わず、アカウントへ送るだけにする */
+.home-insta__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(24px, 4vw, 56px);
+  padding-block: clamp(28px, 4vw, 44px);
+  border-block: 1px solid var(--line);
+}
+.home-insta__eyebrow {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-weight: 600;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+.home-insta__text {
+  margin-top: .8em;
+  font-size: .82rem;
+  letter-spacing: .08em;
+  color: var(--ink-mid);
+}
+.home-insta__cta { flex: none; }
+
+/* ---------------- ABOUT(続き) ---------------- */
+.home-about2__inner { display: flex; justify-content: center; }
+.home-about2__text {
+  max-width: 44em;
+  font-size: .88rem;
+  line-height: 2.6;
+  letter-spacing: .08em;
+  color: var(--ink-mid);
+  text-align: center;
+}
+.home-about2__text p + p { margin-top: 1.6em; }
+.home-about2__closing {
+  color: var(--ink);
+  font-size: .92rem;
+}
+
+/* Aboutの書き出しは少し強く */
+.home-about__opening {
+  color: var(--ink);
+  font-size: .98rem;
+  letter-spacing: .06em;
 }
 
 /* ---------------- INFO / ACCESS ---------------- */
