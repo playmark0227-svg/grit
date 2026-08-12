@@ -151,6 +151,39 @@
 }
 .home-about__text p + p { margin-top: 1.2em; }
 
+/* ---------------- 代表挨拶 ---------------- */
+.home-msg__inner {
+  display: grid;
+  gap: clamp(32px, 5vw, 72px);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .home-msg__inner { grid-template-columns: minmax(0, 380px) minmax(0, 1fr); }
+}
+.home-msg__photo img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+.home-msg__text {
+  margin: clamp(24px, 3vw, 34px) 0 clamp(28px, 3.5vw, 40px);
+  font-size: .88rem;
+  line-height: 2.6;
+  letter-spacing: .08em;
+  color: var(--ink-mid);
+}
+.home-msg__text p + p { margin-top: 1.6em; }
+.home-msg__name {
+  padding-top: 1.4em;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--ink);
+}
+
 /* ---------------- JOURNAL(全幅・3件) ---------------- */
 .home-posts {
   display: grid;
