@@ -168,7 +168,7 @@ function footerHTML() {
           <span class="site-logo__text">Grit.</span>
           <p class="site-footer__lead">
             良い服と、良い時間を。<br>
-            〒063-0812 北海道札幌市西区琴似2条2丁目1-3 テーオービル 2F<br>
+            〒063-0804 北海道札幌市西区二十四軒4条2丁目9-28 栄光ビル 203<br>
             13:00 – 20:00 / 月曜定休
           </p>
         </div>
