@@ -175,12 +175,24 @@
 }
 .home-msg__text p + p { margin-top: 1.6em; }
 .home-msg__name {
+  display: flex;
+  align-items: baseline;
+  gap: .9em;
+  flex-wrap: wrap;
   padding-top: 1.4em;
   border-top: 1px solid var(--line);
   font-family: var(--font-display);
-  font-size: .82rem;
+  font-size: .76rem;
   font-weight: 500;
-  letter-spacing: .06em;
+  letter-spacing: .1em;
+  color: var(--ink-soft);
+}
+/* 氏名は本文と同じ和文書体で、少し大きく */
+.home-msg__person {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: .14em;
   color: var(--ink);
 }
 
