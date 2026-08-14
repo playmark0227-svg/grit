@@ -176,41 +176,26 @@
 .home-msg__text p + p { margin-top: 1.6em; }
 .home-msg__name {
   display: flex;
-  align-items: baseline;
-  gap: 1.2em;
+  align-items: center;
+  gap: 1.4em;
   flex-wrap: wrap;
-  padding-top: 1.4em;
+  padding-top: 1.6em;
   border-top: 1px solid var(--line);
+}
+.home-msg__role {
   font-family: var(--font-display);
   font-size: .76rem;
   font-weight: 500;
   letter-spacing: .1em;
   color: var(--ink-soft);
 }
-/* 氏名は手書きの楷書(Klee One)でサインらしく。
-   わずかに傾け、下に細い罫を引いて「書いた線」に見せる */
-.home-msg__person {
-  position: relative;
-  display: inline-block;
-  font-family: 'Klee One', var(--font-body);
-  font-size: clamp(1.5rem, 4vw, 1.85rem);
-  font-weight: 600;
-  letter-spacing: .06em;
-  line-height: 1.4;
-  color: var(--ink);
-  transform: rotate(-1.2deg);
+/* 署名は画像(Higgsfieldで生成した手書き)。
+   PNGは透過済みで、インクの色はサイトの黒に揃えてある */
+.home-msg__sign {
+  width: clamp(190px, 26vw, 250px);
+  height: auto;
+  transform: rotate(-1deg);
   transform-origin: left center;
-  padding-bottom: .18em;
-}
-/* 署名の下に引く一本線(書き終わりのように右へ細くなる) */
-.home-msg__person::after {
-  content: "";
-  position: absolute;
-  left: -.06em;
-  right: -.22em;
-  bottom: 0;
-  height: 1px;
-  background: linear-gradient(90deg, var(--ink) 0%, var(--ink) 72%, rgb(17 17 17 / 0) 100%);
 }
 
 /* ---------------- JOURNAL(全幅・3件) ---------------- */
