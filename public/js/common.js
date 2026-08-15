@@ -12,10 +12,9 @@ import "./motion.js";
    ローカル/Firebase では "/"、Pages では "/<リポジトリ名>/" になる。 */
 export const BASE = new URL("../", import.meta.url).pathname;
 
-/* InstagramのアカウントURL。決まったらここだけ書き換える
-   (ヘッダー・フッター・トップページの導線がまとめて切り替わる)
-   例: "https://www.instagram.com/grit_kotoni/" */
-export const INSTAGRAM_URL = "https://www.instagram.com/";
+/* InstagramのアカウントURL。ヘッダー・フッターの導線がここで切り替わる
+   (トップページのCTAだけは index.html に直接書いてあるので、変える時は2箇所) */
+export const INSTAGRAM_URL = "https://www.instagram.com/grit._vintage_sapporo/";
 
 /* ---------- utilities ---------- */
 

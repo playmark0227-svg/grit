@@ -276,8 +276,9 @@
   color: var(--ink-mid);
 }
 
-/* ---------------- INSTAGRAM(アカウントへの導線) ----------------
-   投稿の埋め込みはShopと内容が重なるため行わず、アカウントへ送るだけにする */
+/* ---------------- INSTAGRAM(導線 + 最新投稿) ----------------
+   上段はアカウントへの導線。下段に最新投稿を並べる。
+   投稿はJSで描くので、取得できないときは下段ごと出ない([hidden]) */
 .home-insta__inner {
   display: flex;
   flex-wrap: wrap;
@@ -301,6 +302,41 @@
   color: var(--ink-mid);
 }
 .home-insta__cta { flex: none; }
+
+/* 最新投稿。Instagramの見た目に寄せて正方形・すきまは細く。
+   スマホ3列 / PC6列(1行)= 6枚。枚数を変えるなら js/instagram.js の MAX も合わせる */
+.home-insta__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1.2vw, 16px);
+  margin-top: clamp(28px, 4vw, 48px);
+}
+@media (min-width: 720px) { .home-insta__grid { grid-template-columns: repeat(6, minmax(0, 1fr)); } }
+.home-insta__grid[hidden] { display: none; }
+.insta-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--bg-soft);
+}
+.insta-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  transition: transform .9s cubic-bezier(.22,.61,.36,1);
+}
+.insta-card:hover img { transform: scale(1.04); }
+/* 動画・リールの再生マーク。写真に載るので、影は視認のためだけの最小限 */
+.insta-card__badge {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 15px;
+  height: 15px;
+  color: #fff;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .5));
+}
+.insta-card__badge svg { width: 100%; height: 100%; display: block; }
 
 /* ---------------- ABOUT(続き) ---------------- */
 .home-about2__inner { display: flex; justify-content: center; }

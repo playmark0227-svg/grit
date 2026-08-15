@@ -4,12 +4,19 @@
 #   Firebaseを設定していないのでデモモード(サンプル商品)で表示されます。
 #   決済・実データはFirebaseへデプロイした本番でのみ動きます(SETUP.md)。
 # main ブランチに push すると自動で更新されます。
+#
+# あわせて、公開のたびに Instagram の最新投稿を取り込みます。
+# 投稿だけを取り直すために、6時間おきにも自動で公開し直します。
+# 初期設定(アクセストークンの登録)は INSTAGRAM.md を見てください。
 # ============================================================
 name: Deploy preview to GitHub Pages
 
 on:
   push:
     branches: [main]
+  schedule:
+    # Instagram に新しい投稿があれば取り込むための定期公開(6時間おき / UTC)
+    - cron: "0 */6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -27,8 +34,27 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    # ステップの if では secrets を直接参照できない仕様のため、
+    # 「登録されているか」だけをここで真偽値にしておく(値自体は入れない)
+    env:
+      HAS_IG_TOKEN: ${{ secrets.IG_ACCESS_TOKEN != '' }}
+      HAS_GH_PAT: ${{ secrets.GH_PAT != '' }}
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # public/data/instagram.json と public/assets/instagram/ を作る。
+      # 失敗してもサイトの公開は止めない(トップのInstagram欄が消えるだけ)。
+      # 結果は最後のステップで判定して、失敗なら通知が飛ぶようにしている。
+      - name: Instagram の最新投稿を取り込む
+        id: instagram
+        continue-on-error: true
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: node scripts/fetch-instagram.mjs
+
       - uses: actions/configure-pages@v5
       - name: サイト本体(public/)だけをアップロード
         uses: actions/upload-pages-artifact@v3
@@ -36,3 +62,24 @@ jobs:
           path: public
       - id: deployment
         uses: actions/deploy-pages@v4
+
+      # 長期トークン(有効60日)を延長して Secrets に保存し直す。
+      # GH_PAT(Secretsの書き込み権限を持つトークン)を登録している時だけ動く。
+      # 未登録でもサイトは動くが、60日ごとに手でトークンを貼り直す必要がある。
+      - name: Instagram のアクセストークンを延長
+        if: env.HAS_IG_TOKEN == 'true' && env.HAS_GH_PAT == 'true'
+        continue-on-error: true
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          NEW=$(node scripts/fetch-instagram.mjs --refresh-token)
+          echo "::add-mask::$NEW"
+          printf '%s' "$NEW" | gh secret set IG_ACCESS_TOKEN
+
+      - name: 取り込みに失敗していたら知らせる
+        if: steps.instagram.outcome == 'failure'
+        run: |
+          echo "::error::Instagram の投稿を取り込めませんでした。トークンの期限切れが最も多い原因です。INSTAGRAM.md の手順で発行し直してください。"
+          exit 1

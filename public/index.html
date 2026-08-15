@@ -172,18 +172,24 @@
     </section>
 
     <!-- ================= INSTAGRAM =================
-         埋め込みではなく、アカウントへ送る導線。
-         アカウントが決まったら下の href を差し替えるだけ(2箇所: ここ と common.js) -->
+         最新投稿のグリッドは js/instagram.js が data/instagram.json から描画する。
+         その JSON は GitHub Actions が定期的に Instagram から取り込んだもの。
+         取得できないときはグリッドを出さず、アカウントへの導線だけが残る。
+         仕組みと初期設定は INSTAGRAM.md を参照。
+         アカウントURLはここと common.js の2箇所 -->
     <section class="section home-insta">
-      <div class="container home-insta__inner" data-reveal>
-        <div class="home-insta__lead">
-          <p class="home-insta__eyebrow">Instagram</p>
-          <p class="home-insta__text">入荷情報や店内の様子は、Instagramで毎日お知らせしています。</p>
+      <div class="container">
+        <div class="home-insta__inner" data-reveal>
+          <div class="home-insta__lead">
+            <p class="home-insta__eyebrow">Instagram</p>
+            <p class="home-insta__text">入荷情報や店内の様子は、Instagramで毎日お知らせしています。</p>
+          </div>
+          <a class="cta cta--fill home-insta__cta" href="https://www.instagram.com/grit._vintage_sapporo/" target="_blank" rel="noopener">
+            <span class="cta__main">Instagramを見る</span>
+            <span class="cta__sub">最新の入荷はこちら</span>
+          </a>
         </div>
-        <a class="cta cta--fill home-insta__cta" href="https://www.instagram.com/" target="_blank" rel="noopener">
-          <span class="cta__main">Instagramを見る</span>
-          <span class="cta__sub">最新の入荷はこちら</span>
-        </a>
+        <div class="home-insta__grid" id="insta-grid" hidden></div>
       </div>
     </section>
 
@@ -234,6 +240,7 @@
 
   <script src="js/firebase-config.js"></script>
   <script type="module" src="js/common.js"></script>
+  <script type="module" src="js/instagram.js"></script>
   <script type="module">
     import { getLatestProducts, getPosts, isAvailable } from "./js/store.js";
     import { esc, yen, fmtDate, shortSize, BASE } from "./js/common.js";

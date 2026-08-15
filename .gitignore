@@ -1,5 +1,8 @@
 node_modules/
 .DS_Store
+
+# Instagram から取り込んだ画像(公開のたびに作り直すので、リポジトリには入れない)
+public/assets/instagram/
 *.log
 firebase-debug.log*
 .firebase/
