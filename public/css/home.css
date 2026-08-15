@@ -192,7 +192,7 @@
 /* 署名は画像(Higgsfieldで生成した手書き)。
    PNGは透過済みで、インクの色はサイトの黒に揃えてある */
 .home-msg__sign {
-  width: clamp(140px, 18vw, 176px);
+  width: clamp(108px, 13vw, 132px);
   height: auto;
   transform: rotate(-1deg);
   transform-origin: left center;
